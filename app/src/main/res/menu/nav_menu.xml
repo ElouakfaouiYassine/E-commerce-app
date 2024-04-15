@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:menuCategory="secondary"
+    tools:showIn = "navigation_view">
+    <group
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/home"
+            android:title="@string/home"
+            android:icon="@drawable/home"/>
+
+        <item
+            android:id="@+id/search"
+            android:title="@string/shearch"
+            android:icon="@drawable/searsh"
+            />
+        <item
+            android:id="@+id/panier"
+            android:title="Panier"
+            android:icon="@drawable/panier"
+            tools:ignore="HardcodedText" />
+        <item
+            android:id="@+id/profile"
+            android:title="@string/profile"
+            android:icon="@drawable/profile"
+            />
+        <item
+            android:id="@+id/setting"
+            android:title="@string/settings"
+            android:icon="@drawable/settings"/>
+    </group>
+
+</menu>

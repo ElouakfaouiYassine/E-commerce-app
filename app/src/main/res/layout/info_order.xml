@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/click_product"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/image_order"
+        android:layout_width="200dp"
+        android:layout_height="160dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/background_error" />
+
+
+    <TextView
+        android:id="@+id/info_tv_nam_order"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="220dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/name_of_prodact" />
+
+    <TextView
+        android:id="@+id/info_tv_description_order"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/description_of_prodact"
+        android:layout_marginTop="60dp"
+        android:layout_marginStart="220dp"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/info_tv_price_order"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="220dp"
+        android:layout_marginTop="90dp"
+        android:text="@string/prace_of_prodact"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+    <TextView
+        android:id="@+id/info_tv_pricePromorion_order"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="220dp"
+        android:layout_marginTop="120dp"
+        android:text="@string/prace_of_prodact"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Service"
+        android:textSize="16sp"
+        android:paddingStart="15dp"
+        android:textColor="@color/black"
+        android:layout_marginTop="165dp"
+        android:background="#e7e7e7"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fast Delivery"
+        android:textSize="16sp"
+        android:textColor="#3cb80f"
+        android:paddingStart="15dp"
+        android:layout_marginTop="185dp"
+        android:background="#e7e7e7"/>
+    <Button
+        android:id="@+id/btn_return_order"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Returns/refunds"
+        android:layout_marginTop="210dp"
+        android:textColor="@color/black"
+        android:background="@drawable/shap_button_white"
+        android:layout_marginStart="250dp"/>
+
+</RelativeLayout>

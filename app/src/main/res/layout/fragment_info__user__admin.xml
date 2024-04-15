@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".View.Info_User_AdminFragment">
+
+    <SearchView
+        android:id="@+id/idSV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:iconifiedByDefault="false"
+        android:queryHint="Search Prodacts" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_info_admin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="70dp"
+        tools:listitem="@layout/info_rv_admin"/>
+
+    <Button
+        android:id="@+id/btn_add_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="830dp"
+        android:backgroundTint="@color/black"
+        android:text="Add Profile"/>
+</FrameLayout>

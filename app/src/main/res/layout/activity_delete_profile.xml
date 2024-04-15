@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".View.SignUP">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="180dp"
+        android:background="@color/white"
+        android:scaleType="fitXY"
+        android:src="@drawable/delete_background"
+        tools:ignore="ContentDescription" />
+
+    <EditText
+        android:id="@+id/emailDelete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/email"
+        android:background="@drawable/shipedittext"
+        android:padding="15dp"
+        android:drawableStart="@drawable/icon_email"
+        android:inputType="textEmailAddress"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        tools:ignore="Autofill,TextFields" />
+
+    <Button
+        android:id="@+id/btnDeleteUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/delete"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="70dp"
+        android:layout_marginLeft="70dp"
+        android:backgroundTint="@color/black" />
+
+</LinearLayout>

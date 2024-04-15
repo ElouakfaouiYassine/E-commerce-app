@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="5dp"
+    android:background="@color/lavender"
+    android:layout_marginBottom="5dp"
+    android:orientation="horizontal">
+
+
+    <TextView
+        android:id="@+id/user_info_admin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/username"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="10dp"
+        android:textSize="25sp" />
+    <TextView
+        android:id="@+id/email_info_admin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="10dp"
+        android:text="@string/email"
+        android:textSize="25sp"
+        tools:ignore="HardcodedText,TextContrastCheck" />
+    <ImageView
+        android:id="@+id/delete_info_admin"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginStart="300dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/delete_background"
+        tools:ignore="ContentDescription" />
+    <ImageView
+        android:id="@+id/edit_info_admin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:layout_marginStart="305dp"
+        android:src="@drawable/icon_edit"
+        tools:ignore="ContentDescription" />
+
+
+</RelativeLayout>
