@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fillViewport="true"
+    tools:context=".View.ProductDetailActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/productImage"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/background_error" />
+
+        <TextView
+            android:id="@+id/productName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:text="Product Name"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/productPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="MAD 105.00"
+            android:layout_marginTop="8dp" />
+        <TextView
+            android:id="@+id/productDiscountPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/red"
+            android:text="MAD 88.61"
+            android:layout_marginTop="4dp" />
+        <TextView
+            android:id="@+id/productDiscriptiton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text="@string/description_of_prodact"
+            android:maxLines="1"
+            android:layout_marginTop="4dp" />
+
+        <!-- Add more views as needed for other product details like description, capacity, etc. -->
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <Button
+                android:id="@+id/decreaseQuantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-" />
+
+            <TextView
+                android:id="@+id/quantityText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp" />
+
+            <Button
+                android:id="@+id/increaseQuantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+" />
+
+            <!-- Add a TextView here for showing stock availability -->
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/addToCartButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add to Cart"
+            android:layout_marginTop="24dp" />
+
+        <!-- You can add more details like shipping info here -->
+    </LinearLayout>
+</ScrollView>
