@@ -17,7 +17,7 @@ class DataBasePanier(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         const val COLUMN_IMAGE = "image"
         const val COLUMN_NAME = "name"
         const val COLUMN_DESCRIPTION = "description"
-        const val COLUMN_QUANTITY = "quantity"
+        const val COLUMN_QUANTITY_ORDER = "quantity_order"
         const val COLUMN_PRICE = "price"
         const val COLUMN_PROMOTION_PRICE = "promotion_price"
         // Add other columns as needed
@@ -29,17 +29,70 @@ class DataBasePanier(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
                 "$COLUMN_IMAGE TEXT, " +
                 "$COLUMN_NAME TEXT, " +
                 "$COLUMN_DESCRIPTION TEXT, " +
-                "$COLUMN_QUANTITY TEXT, " +
+                "$COLUMN_QUANTITY_ORDER INTEGER, " +
                 "$COLUMN_PROMOTION_PRICE TEXT, " +
                 "$COLUMN_PRICE TEXT)")
         db?.execSQL(createTableQuery)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        // Handle database upgrades if needed
+        if (oldVersion < 2) {
+            // This adds the new column to the existing table without losing data
+            db?.execSQL("ALTER TABLE $TABLE_NAME ADD COLUMN $COLUMN_QUANTITY_ORDER INTEGER DEFAULT 0")
+        }
     }
 
-    fun addToCart(product: Products): Long {
+    fun getExistingQuantity(db: SQLiteDatabase, productName: String): Int {
+        val cursor = db.query(
+            TABLE_NAME,
+            arrayOf(COLUMN_QUANTITY_ORDER),  // Ensure this column is correctly named and included in the query
+            "$COLUMN_NAME = ?",
+            arrayOf(productName),
+            null, null, null
+        )
+        cursor.use {
+            if (it.moveToFirst()) {
+                val columnIndex = it.getColumnIndex(COLUMN_QUANTITY_ORDER)
+                if (columnIndex != -1) {
+                    return it.getInt(columnIndex)
+                }
+            }
+        }
+        return 0  // Return 0 if product is not found or column is missing
+    }
+
+
+    fun addToCart(product: Products, quantity: Int): Long {
+        val db = writableDatabase
+        val existingQuantity = getExistingQuantity(db, product.nam_Product)
+
+        if (product.quantity_Product < quantity + existingQuantity) {
+            return -1L // Not enough stock
+        }
+
+        val values = ContentValues().apply {
+            put(COLUMN_IMAGE, product.image_product?.toString())
+            put(COLUMN_NAME, product.nam_Product)
+            put(COLUMN_DESCRIPTION, product.description_Product)
+            put(COLUMN_QUANTITY_ORDER, quantity + existingQuantity) // Assuming you are tracking ordered quantity
+            put(COLUMN_PRICE, product.price_Product)
+            put(COLUMN_PROMOTION_PRICE, product.discount_Price_Product)
+        }
+
+        // Update if already in cart, otherwise insert new
+        return if (existingQuantity > 0) {
+            db.update(TABLE_NAME, values, "$COLUMN_NAME = ?", arrayOf(product.nam_Product)).toLong()
+        } else {
+            db.insert(TABLE_NAME, null, values)
+        }
+    }
+
+
+
+
+
+
+    /*fun addToCart(product: Products): Long {
         val db = writableDatabase
 
         val values = ContentValues().apply {
@@ -47,6 +100,7 @@ class DataBasePanier(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
             put(COLUMN_NAME, product.nam_Product)
             put(COLUMN_DESCRIPTION, product.description_Product)
             put(COLUMN_QUANTITY, product.quantity_Product)
+            put(COLUMN_QUANTITY_ORDER, product.quantity_order)
             put(COLUMN_PRICE, product.price_Product)
             put(COLUMN_PROMOTION_PRICE, product.discount_Price_Product)
         }
@@ -58,7 +112,7 @@ class DataBasePanier(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
             e.printStackTrace()
             -1L
         }
-    }
+    }*/
     fun isProductInCart(productName: String): Boolean {
         val db = readableDatabase
         val query = "SELECT COUNT(*) FROM $TABLE_NAME WHERE $COLUMN_NAME = ?"

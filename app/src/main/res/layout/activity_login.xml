@@ -15,7 +15,7 @@
         android:background="@drawable/shipedittext"
         android:padding="15dp"
         android:drawableStart="@drawable/icon_usernam"
-        android:inputType="textPassword"
+        android:inputType="textPersonName"
         android:layout_marginTop="290dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
@@ -77,6 +77,6 @@
             android:layout_marginStart="230dp"
             android:layout_marginTop="505dp"
             android:text="@string/signup"
-            android:textSize="20sp" />
+            android:textSize="20sp"/>
 
 </RelativeLayout>

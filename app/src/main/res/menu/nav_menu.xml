@@ -17,12 +17,12 @@
             />
         <item
             android:id="@+id/panier"
-            android:title="Panier"
+            android:title="Cart"
             android:icon="@drawable/panier"
             tools:ignore="HardcodedText" />
         <item
             android:id="@+id/profile"
-            android:title="@string/profile"
+            android:title="Account"
             android:icon="@drawable/profile"
             />
         <item

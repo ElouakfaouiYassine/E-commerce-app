@@ -55,11 +55,13 @@ class AdapterSearch(var list:List<Products>, var itemClick: OnItemClickListener)
                 if (position != RecyclerView.NO_POSITION) {
                     val product = filteredList[position]
                     val databasePanier = DataBasePanier(itemView.context)
-                    databasePanier.addToCart(product)
+                    // Assuming the default quantity to add is 1
+                    databasePanier.addToCart(product, 1)  // Here we pass 1 as the quantity
                     image_add_Panier.visibility = View.INVISIBLE
                     Toast.makeText(itemView.context, "Product added to cart", Toast.LENGTH_SHORT).show()
                 }
             }
+
         }
         fun bind(product: Products) {
             tvname_info_Category.text = product.nam_Product

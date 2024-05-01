@@ -59,7 +59,7 @@ class PanierFragment : Fragment(), AdapterPanier.OnItemClickListener {
             val imageIndex = c.getColumnIndex(DataBasePanier.COLUMN_IMAGE)
             val nameIndex = c.getColumnIndex(DataBasePanier.COLUMN_NAME)
             val descriptionIndex = c.getColumnIndex(DataBasePanier.COLUMN_DESCRIPTION)
-            val quantityIndex = c.getColumnIndex(DataBasePanier.COLUMN_QUANTITY)
+            val quantityIndex = c.getColumnIndex(DataBasePanier.COLUMN_QUANTITY_ORDER)
             val priceIndex = c.getColumnIndex(DataBasePanier.COLUMN_PRICE)
             val price_DiscountIndex = c.getColumnIndex(DataBasePanier.COLUMN_PROMOTION_PRICE)
 

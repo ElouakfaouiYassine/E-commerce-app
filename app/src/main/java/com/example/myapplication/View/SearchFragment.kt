@@ -129,7 +129,7 @@ class SearchFragment : Fragment(), AdapterSearch.OnItemClickListener {
                 var price_promotion = cursor.getDouble(price_promotionIndex)
                 val isLiked = cursor.getInt(isLikedIndex) == 1
 
-                val product = Products(id, imageUri, name, description, quantity, price,price_promotion, false, isLiked)
+                val product = Products(id, imageUri, name, description, quantity, price,price_promotion,0, false, isLiked)
                 categoryProductsList.add(product)
             }
         }
@@ -165,7 +165,7 @@ class SearchFragment : Fragment(), AdapterSearch.OnItemClickListener {
 
                 val isLiked = cursor.getInt(isLikedIndex) == 1
 
-                val product = Products(id, imageUri, name, description, quantity, price, price_discount, false, isLiked)
+                val product = Products(id, imageUri, name, description, quantity, price, price_discount,0, false, isLiked)
                 allProductsList.add(product)
             }
         }

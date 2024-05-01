@@ -12,6 +12,7 @@ data class Products(
     var quantity_Product: Int,
     var price_Product: Double,
     var discount_Price_Product: Double,
+    var quantity_order: Int = 0,
     var isInCart: Boolean = false,
     var isLiked: Boolean = false
 ): Parcelable {
@@ -23,11 +24,12 @@ data class Products(
         parcel.readInt(),
         parcel.readDouble(),
         parcel.readDouble(),
+        parcel.readInt(),
         parcel.readByte() != 0.toByte(),
         parcel.readByte() != 0.toByte()
     )
 
-    constructor() : this(0, null, "", "", 0, 0.0,0.0, false, false)
+    constructor() : this(0, null, "", "", 0,  0.0,0.0,0, false, false)
     constructor(
         id_product: Int,
         image_product: Uri?,
@@ -36,7 +38,7 @@ data class Products(
         quantity_Product: Int,
         price_Product: Double,
         discount_Price_Product: Double
-    ) : this(id_product, image_product, nam_Product, description_Product, quantity_Product, price_Product, discount_Price_Product, false, false)
+    ) : this(id_product, image_product, nam_Product, description_Product, quantity_Product, price_Product, discount_Price_Product,0,  false, false)
 
 
 
@@ -45,14 +47,14 @@ data class Products(
 
 
     constructor(id_product: Int, image_product: Uri?, nam_Product: String, description_Product: String, quantity_Product: Int, price_Product: Double, discount_Price_Product: Double, isLiked: Boolean) :
-            this(id_product, image_product, nam_Product,description_Product,quantity_Product, price_Product, discount_Price_Product, false, isLiked)
+            this(id_product, image_product, nam_Product,description_Product,quantity_Product, price_Product, discount_Price_Product,0, false, isLiked)
 
 
     constructor(image_product: Uri?, nam_Product: String, description_Product: String, price_Product: Double,discount_Price_Product: Double, isInCart: Boolean, isLiked: Boolean) :
-            this(0, image_product, nam_Product,description_Product,0, price_Product, discount_Price_Product, isInCart, isLiked)
+            this(0, image_product, nam_Product,description_Product,0, price_Product, discount_Price_Product,0, isInCart, isLiked)
 
     constructor(image_product: Uri?, nam_Product: String, description_Product: String, quantity_Product: Int, price_Product: Double, discount_Price_Product: Double, isInCart: Boolean, isLiked: Boolean) :
-            this(0, image_product, nam_Product,description_Product,quantity_Product, price_Product, discount_Price_Product, isInCart, isLiked)
+            this(0, image_product, nam_Product,description_Product,quantity_Product, price_Product, discount_Price_Product, 0, isInCart, isLiked)
 
 
 
@@ -63,6 +65,7 @@ data class Products(
         parcel.writeString(description_Product)
         parcel.writeInt(quantity_Product)
         parcel.writeDouble(price_Product)
+        parcel.writeDouble(discount_Price_Product)
         parcel.writeByte(if (isInCart) 1 else 0)
         parcel.writeByte(if (isLiked) 1 else 0)
     }

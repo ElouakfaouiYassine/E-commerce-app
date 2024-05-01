@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.example.myapplication.Model.Products
 import com.example.myapplication.R
 import java.text.NumberFormat
+import java.util.Currency
 
 class AdapterPanier(var list:List<Products>, private val deleteListener: (Products) -> Unit, var itemClick: OnItemClickListener) : RecyclerView.Adapter<AdapterPanier.PanierViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PanierViewHolder {
@@ -61,10 +62,14 @@ class AdapterPanier(var list:List<Products>, private val deleteListener: (Produc
             tvquantityInfo.text = product.quantity_Product.toString()
             tvpriceInfo.text = product.price_Product.toString()
             tvpriceDiscountInfo.text = product.discount_Price_Product.toString()
-            val formattedPrice = NumberFormat.getCurrencyInstance().format(product.price_Product)
+            val currencyFormat = NumberFormat.getCurrencyInstance()
+            currencyFormat.currency = Currency.getInstance("MAD")
+            val formattedPrice = currencyFormat.format(product.price_Product)
             tvpriceInfo.text = formattedPrice
-            val formattedPriceDiscount = NumberFormat.getCurrencyInstance().format(product.discount_Price_Product)
+
+            val formattedPriceDiscount = currencyFormat.format(product.discount_Price_Product)
             tvpriceDiscountInfo.text = formattedPriceDiscount
+
 
             imageDeletePanier.setOnClickListener {
                 deleteListener(product)

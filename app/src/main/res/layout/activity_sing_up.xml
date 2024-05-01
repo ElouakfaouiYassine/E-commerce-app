@@ -22,6 +22,7 @@
         android:layout_marginRight="20dp"
         tools:ignore="Autofill" />
 
+
     <EditText
         android:id="@+id/emailSignup"
         android:layout_width="match_parent"

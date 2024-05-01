@@ -1,15 +1,20 @@
 package com.example.myapplication.View
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.NumberPicker
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.myapplication.Model.Products
 import com.example.myapplication.R
 import java.text.NumberFormat
+import java.util.Currency
 
 class MyAdapter(private var list: List<Products>,
                 private val onItemClick: OnItemClickListener
@@ -41,7 +46,8 @@ class MyAdapter(private var list: List<Products>,
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val image_add_panier: ImageView = itemView.findViewById(R.id.icon_add_Panier)
         private val imageview_info: ImageView = itemView.findViewById(R.id.image_info)
-        private val tvdiscount_price_info: TextView = itemView.findViewById(R.id.info_tv_discount_price)
+        private val tvdiscount_price_info: TextView =
+            itemView.findViewById(R.id.info_tv_discount_price)
         private val tvdescription_info: TextView = itemView.findViewById(R.id.info_tv_description)
         private val tvprice_info: TextView = itemView.findViewById(R.id.info_tv_priceP)
         private val tvname_info: TextView = itemView.findViewById(R.id.info_tv_namP)
@@ -68,10 +74,16 @@ class MyAdapter(private var list: List<Products>,
                 tvprice_info.text = product.price_Product.toString()
                 tvname_info.text = product.nam_Product
 
-                val formattedPrice = NumberFormat.getCurrencyInstance().format(product.price_Product)
+                val currencyFormat = NumberFormat.getCurrencyInstance()
+                currencyFormat.currency = Currency.getInstance("MAD")
+
+                // Format prices
+                val formattedPrice = currencyFormat.format(product.price_Product)
                 tvprice_info.text = formattedPrice
-                val formattedPriceDiscount = NumberFormat.getCurrencyInstance().format(product.discount_Price_Product)
+
+                val formattedPriceDiscount = currencyFormat.format(product.discount_Price_Product)
                 tvdiscount_price_info.text = formattedPriceDiscount
+
 
 
                 if (product.isInCart) {
@@ -82,6 +94,7 @@ class MyAdapter(private var list: List<Products>,
 
                 image_add_panier.setOnClickListener {
                     onItemClick.onAddProductClicked(product)
+
                 }
             }
         }

@@ -1,5 +1,6 @@
 package com.example.myapplication.View
 
+import android.content.Intent
 import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
@@ -64,7 +65,6 @@ class HomeFragment : Fragment(), MyAdapter.OnItemClickListener {
                 val priceDiscount = if (priceDiscountIndex != -1) it.getDouble(priceDiscountIndex) else 0.0
                 val imageUri = Uri.parse(imageUriString)
 
-                Log.d("Database", "Price: $price, Promotion Price: $priceDiscount")
 
                 val isLiked = dbHelper.isProductLiked(name)
                 val isInCart = panierDbHelper.isProductInCart(name)
@@ -106,26 +106,19 @@ class HomeFragment : Fragment(), MyAdapter.OnItemClickListener {
     }
 
     override fun onAddProductClicked(product: Products) {
+        val intent = Intent(context, ProductDetailActivity::class.java).apply {
+            putExtra("product", product)
+        }
+        startActivity(intent)
+    }
+    /*override fun onAddProductClicked(product: Products) {
         product.isInCart = true
         adapter.notifyDataSetChanged()
+
         addToCart(product)
-    }
+    }*/
 
-    fun addToCart(product: Products) {
-        val result = panierDbHelper.addToCart(product)
-        if (result != -1L) {
-            view?.let { rootView ->
-                Snackbar.make(rootView, "Product added to cart", Snackbar.LENGTH_LONG).show()
-            }
 
-            product.isInCart = true
-            (recyclerView.adapter as? MyAdapter)?.notifyItemChanged(newList.indexOf(product))
-        } else {
-            view?.let { rootView ->
-                Snackbar.make(rootView, "Failed to add product to cart", Snackbar.LENGTH_LONG).show()
-            }
-        }
-    }
 
     private fun removeFromCart(productName: String) {
         val result = panierDbHelper.removeFromCart(productName)

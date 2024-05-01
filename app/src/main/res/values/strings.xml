@@ -16,6 +16,8 @@
     <string name="description_of_product">Description of product</string>
     <string name="quantity_of_product">Quantity of product</string>
     <string name="price_of_product">Price of product</string>
+    <string name="price_format">MAD %1$.2f</string>
+    <string name="no_discount">No Discount Available</string>
     <string name="lanch_product">Lanch Product</string>
     <string name="username">UserName</string>
     <string name="number_phone">Number phone</string>
