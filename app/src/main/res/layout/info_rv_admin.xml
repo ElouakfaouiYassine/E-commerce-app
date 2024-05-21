@@ -30,18 +30,18 @@
         tools:ignore="HardcodedText,TextContrastCheck" />
     <ImageView
         android:id="@+id/delete_info_admin"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginStart="300dp"
         android:layout_marginTop="5dp"
         android:src="@drawable/delete_background"
         tools:ignore="ContentDescription" />
     <ImageView
         android:id="@+id/edit_info_admin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginTop="45dp"
-        android:layout_marginStart="305dp"
+        android:layout_marginStart="300dp"
         android:src="@drawable/icon_edit"
         tools:ignore="ContentDescription" />
 

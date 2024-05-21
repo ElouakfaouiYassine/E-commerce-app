@@ -2,16 +2,13 @@ package com.example.myapplication.View
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import com.example.myapplication.Model.Products
 import com.example.myapplication.R
 import com.example.myapplication.Repository.DataBasePanier
 import com.google.android.material.snackbar.Snackbar
-import java.text.NumberFormat
 
 class ProductDetailActivity : AppCompatActivity() {
     private lateinit var product: Products

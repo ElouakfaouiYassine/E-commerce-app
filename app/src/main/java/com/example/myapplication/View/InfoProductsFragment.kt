@@ -1,5 +1,6 @@
 package com.example.myapplication.View
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,8 +14,10 @@ import android.graphics.BitmapFactory
 import android.util.Log
 import android.widget.Button
 import androidx.fragment.app.activityViewModels
+import com.example.myapplication.Repository.DataBasePanier
 import com.example.myapplication.Repository.DatabaseHelper
 import com.example.myapplication.ViewModel.SharedViewModel
+import com.google.android.material.snackbar.Snackbar
 import java.io.IOException
 import java.text.NumberFormat
 
@@ -42,6 +45,11 @@ class InfoProductsFragment : Fragment() {
         }
         view.findViewById<ImageView>(R.id.info_product_Favorite).setOnClickListener {
             toggleLikeStatus()
+        }
+        view.findViewById<Button>(R.id.btn_add_to_card).setOnClickListener {
+            product?.let { product ->
+                handleAddToCart(product)
+            }
         }
 
         view.findViewById<Button>(R.id.btn_buy_now).setOnClickListener {
@@ -87,6 +95,8 @@ class InfoProductsFragment : Fragment() {
         } ?: Log.e("UpdateStatus", "Product name is null")
     }
 
+
+
     fun displayProductInfo(product: Products) {
         view?.apply {
             val imageView = findViewById<ImageView>(R.id.info_product)
@@ -110,5 +120,24 @@ class InfoProductsFragment : Fragment() {
             val formattedPriceDiscount = NumberFormat.getCurrencyInstance().format(product.discount_Price_Product)
             findViewById<TextView>(R.id.info_tv_priceDiscountProduct).text = formattedPriceDiscount
         }
+    }
+    private fun handleAddToCart(product: Products) {
+        val database = DataBasePanier(requireContext())
+        if (database.isProductInCart(product.nam_Product)) {
+            showSnackbar("Product already in cart")
+        } else {
+            openProductDetailActivity(product)
+        }
+    }
+
+    private fun openProductDetailActivity(product: Products) {
+        val intent = Intent(requireContext(), ProductDetailActivity::class.java).apply {
+            putExtra("product", product)
+        }
+        startActivity(intent)
+    }
+
+    private fun showSnackbar(message: String) {
+        Snackbar.make(requireView(), message, Snackbar.LENGTH_LONG).show()
     }
 }

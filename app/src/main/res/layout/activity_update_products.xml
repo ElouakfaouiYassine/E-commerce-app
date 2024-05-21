@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".View.AddProductsActivity">
 
     <LinearLayout
@@ -15,16 +15,24 @@
         android:background="@drawable/shipedittext"
         android:orientation="vertical"
         android:padding="20dp">
-        <EditText
-            android:id="@+id/NameProduct_update"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_NameProduct_update"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/shipedittext"
-            android:hint="@string/the_name_of_the_product_you_want_to_modify"
-            android:inputType="text"
-            android:padding="16dp"
-            tools:ignore="Autofill,TouchTargetSizeCheck" />
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            app:endIconMode="clear_text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/NameProduct_update"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/the_name_of_the_product_you_want_to_modify"
+                android:inputType="textPersonName"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <ImageView
             android:id="@+id/UpdateProductImage"
@@ -37,62 +45,95 @@
             tools:ignore="ContentDescription" />
 
 
-
-        <EditText
-            android:id="@+id/UpdateProductName"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_UpdateProductName"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/shipedittext"
-            android:hint="@string/rename_name_of_product"
-            android:inputType="text"
-            android:padding="16dp"
-            tools:ignore="Autofill,TouchTargetSizeCheck" />
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            app:endIconMode="clear_text">
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/UpdateProductName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/rename_name_of_product"
+                android:inputType="text"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-
-
-        <EditText
-            android:id="@+id/UpdateProductDescription"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_UpdateProductDescription"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/shipedittext"
-            android:hint="@string/rename_description_of_product"
-            android:padding="16dp"
-            tools:ignore="Autofill,TextFields" />
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            app:endIconMode="clear_text">
 
-        <EditText
-            android:id="@+id/UpdateProductQuantity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/shipedittext"
-            android:hint="@string/rename_quantity_of_product"
-            android:inputType="number"
-            android:padding="16dp"
-            tools:ignore="Autofill" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/UpdateProductDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/rename_description_of_product"
+                android:inputType="text"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/UpdateProductPrice"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_UpdateProductQuantity"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/shipedittext"
-            android:hint="@string/rename_price_of_product"
-            android:inputType="number"
-            android:padding="16dp"
-            tools:ignore="Autofill" />
-        <EditText
-            android:id="@+id/UpdateProductPricePromotion"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            app:endIconMode="clear_text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/UpdateProductQuantity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/rename_quantity_of_product"
+                android:inputType="number"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_UpdateProductPrice"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/shipedittext"
-            android:hint="Rename price promotion of product"
-            android:inputType="number"
-            android:padding="16dp"
-            tools:ignore="Autofill" />
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            app:endIconMode="clear_text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/UpdateProductPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/rename_price_of_product"
+                android:inputType="number"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_UpdateProductPricePromotion"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            app:endIconMode="clear_text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/UpdateProductPricePromotion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Rename price promotion of product"
+                android:inputType="number"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/btnUpdateProductUP"

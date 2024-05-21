@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".View.SignUP">
 
@@ -14,20 +15,26 @@
         android:scaleType="fitXY"
         android:src="@drawable/delete_background"
         tools:ignore="ContentDescription" />
-
-    <EditText
-        android:id="@+id/emailDelete"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_emailDelete"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/email"
-        android:background="@drawable/shipedittext"
-        android:padding="15dp"
-        android:drawableStart="@drawable/icon_email"
-        android:inputType="textEmailAddress"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="90dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        tools:ignore="Autofill,TextFields" />
+        app:endIconMode="clear_text">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/emailDelete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:drawableStart="@drawable/icon_email" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
 
     <Button
         android:id="@+id/btnDeleteUser"

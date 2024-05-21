@@ -13,17 +13,16 @@
     <ImageView
         android:id="@+id/image_info_category"
         android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_height="160dp"
         android:layout_centerHorizontal="true"
         android:scaleType="fitXY"
         android:src="@drawable/background_error" />
 
     <ImageView
         android:id="@+id/icon_add_panier"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:background="@drawable/circular_shep"
-        android:layout_marginTop="165dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="125dp"
         android:layout_marginStart="132dp"
         android:src="@drawable/baseline_add_24"/>
 
@@ -34,20 +33,23 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/image_info_category"
         android:layout_marginStart="10dp"
-        android:textColor="@color/red"
-        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:maxLines="1"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/info_tv_discount_search"
+        android:foreground="@drawable/strikethrough"
         android:text="@string/prace_of_prodact"/>
 
     <TextView
         android:id="@+id/info_tv_discount_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/image_info_category"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="205dp"
-        android:layout_toEndOf="@+id/info_tv_priceP_category"
         android:text="@string/prace_of_prodact"
-        android:textColor="@color/black"
-        android:textSize="10sp" />
+        android:textColor="@color/red"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/info_tv_description_search"

@@ -27,9 +27,7 @@ class SearchFragment : Fragment(), AdapterSearch.OnItemClickListener {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: AdapterSearch
     private lateinit var searchView: SearchView
-    private lateinit var dbPanier: DataBasePanier
     private val REQUEST_READ_EXTERNAL_STORAGE_PERMISSION = 123
-    private val PICK_IMAGE_REQUEST = 1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -115,7 +113,7 @@ class SearchFragment : Fragment(), AdapterSearch.OnItemClickListener {
             val descriptionIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_DESCRIPTION)
             val quantityIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_QUANTITY)
             val priceIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_PRICE)
-            var price_promotionIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_PROMOTION_PRICE)
+            val price_promotionIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_PROMOTION_PRICE)
             val isLikedIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_IS_LIKED)
 
             while (cursor.moveToNext()) {
@@ -126,7 +124,7 @@ class SearchFragment : Fragment(), AdapterSearch.OnItemClickListener {
                 val description = cursor.getString(descriptionIndex)
                 val quantity = cursor.getInt(quantityIndex)
                 val price = cursor.getDouble(priceIndex)
-                var price_promotion = cursor.getDouble(price_promotionIndex)
+                val price_promotion = cursor.getDouble(price_promotionIndex)
                 val isLiked = cursor.getInt(isLikedIndex) == 1
 
                 val product = Products(id, imageUri, name, description, quantity, price,price_promotion,0, false, isLiked)
@@ -150,7 +148,7 @@ class SearchFragment : Fragment(), AdapterSearch.OnItemClickListener {
             val descriptionIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_DESCRIPTION)
             val quantityIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_QUANTITY)
             val priceIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_PRICE)
-            var price_discountIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_PROMOTION_PRICE)
+            val price_discountIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_PROMOTION_PRICE)
             val isLikedIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_IS_LIKED)
 
             while (cursor.moveToNext()) {
@@ -161,7 +159,7 @@ class SearchFragment : Fragment(), AdapterSearch.OnItemClickListener {
                 val description = cursor.getString(descriptionIndex)
                 val quantity = cursor.getInt(quantityIndex)
                 val price = cursor.getDouble(priceIndex)
-                var price_discount = cursor.getDouble(price_discountIndex)
+                val price_discount = cursor.getDouble(price_discountIndex)
 
                 val isLiked = cursor.getInt(isLikedIndex) == 1
 

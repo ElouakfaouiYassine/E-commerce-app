@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".View.AddProductsActivity">
 
     <LinearLayout
@@ -20,7 +20,7 @@
             android:id="@+id/AddProductImage"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/background_shape"
             android:scaleType="fitXY"
             android:src="@drawable/background_error"
@@ -31,62 +31,97 @@
             android:id="@+id/sp_category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="10dp"/>
 
-        <EditText
-            android:id="@+id/AddProductName"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_AddProductName"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/shipedittext"
-            android:hint="@string/name_of_product"
-            android:inputType="text"
-            android:padding="16dp"
-            tools:ignore="TouchTargetSizeCheck"
-            android:autofillHints="" />
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            app:endIconMode="clear_text">
 
-        <EditText
-            android:id="@+id/AddProductDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:inputType="text"
-            android:background="@drawable/shipedittext"
-            android:hint="@string/description_of_product"
-            android:padding="16dp"
-            tools:ignore="Autofill,TextFields" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/AddProductName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/name_of_product"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/addProductQuantity"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_AddProductDescription"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/shipedittext"
-            android:hint="@string/quantity_of_product"
-            android:inputType="number"
-            android:padding="16dp"
-            tools:ignore="Autofill" />
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            app:endIconMode="clear_text">
 
-        <EditText
-            android:id="@+id/addProductPrice"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/AddProductDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/description_of_product"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_addProductQuantity"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/shipedittext"
-            android:hint="@string/price_of_product"
-            android:inputType="number"
-            android:padding="16dp"
-            tools:ignore="Autofill" />
-        <EditText
-            android:id="@+id/addProductPromotionPrice"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            app:endIconMode="clear_text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/addProductQuantity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/quantity_of_product"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_addProductPrice"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/shipedittext"
-            android:hint="Promotion price of product"
-            android:inputType="number"
-            android:padding="16dp"
-            tools:ignore="Autofill" />
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            app:endIconMode="clear_text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/addProductPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/price_of_product"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_addProductPromotionPrice"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            app:endIconMode="clear_text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/addProductPromotionPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Promotion price of product"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/btnLanchProduct"

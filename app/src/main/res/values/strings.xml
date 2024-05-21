@@ -50,5 +50,6 @@
     <string name="prace_of_prodact">Prace Of Prodact </string>
     <string name="the_email_of_the_user_you_want_to_modify">The email of the user you want to modify</string>
     <string name="promotion_prace_of_prodact">Promotion prace of prodact</string>
+    <string name="switch_description">Toggle dark mode</string>
 
 </resources>

@@ -23,19 +23,19 @@ class SignUP : AppCompatActivity() {
         setContentView(binding.root)
         databaseUser = DataBaseUser(this)
         binding.btnSignup.setOnClickListener{
-            val signupusernam = binding.usernamSignup.text.toString()
+            val signupusernam = binding.usernameSignup.text.toString()
             val signupemail = binding.emailSignup.text.toString()
             val signupphon = binding.tellSignup.text.toString()
             val signuppassword = binding.passwordSignup.text.toString()
             val signuppasswordconfirm = binding.passwordSignupVirefay.text.toString()
             if (signupusernam.isEmpty()){
-                binding.usernamSignup.error = "The field is empty"
+                binding.usernameSignup.error = "The field is empty"
                 binding.emailSignup.error = "The field is empty"
                 binding.tellSignup.error = "The field is empty"
                 binding.passwordSignup.error = "The field is empty"
                 binding.passwordSignupVirefay.error = "The field is empty"
             }else if (!isValidName(signupusernam)){
-                binding.usernamSignup.error = "The field is not valid"
+                binding.usernameSignup.error = "The field is not valid"
             }else if (signupusernam.isEmpty() || signupemail.isEmpty()){
                 binding.emailSignup.error = "The field is empty"
                 binding.tellSignup.error = "The field is empty"
@@ -73,34 +73,10 @@ class SignUP : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-        binding.showPasswordIcon.setOnClickListener {
-            togglePasswordVisibility(binding.passwordSignup, binding.showPasswordIcon)
-        }
-        binding.showVerificationPasswordIcon.setOnClickListener {
-            togglePasswordVisibility(binding.passwordSignupVirefay, binding.showVerificationPasswordIcon)
-        }
+
     }
 
-    private fun togglePasswordVisibility(editText: EditText, showPasswordIcon: ImageView) {
-        if (editText.inputType == (InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD)) {
-            editText.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
-            showPasswordIcon.setImageResource(R.drawable.visible)
-        } else {
-            editText.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-            showPasswordIcon.setImageResource(R.drawable.invisible)
-        }
-        editText.setSelection(editText.text.length)
-    }
-    private fun togglePasswordVerifyVisibility(editText: EditText, showPasswordIcon: ImageView) {
-        if (editText.inputType == (InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD)) {
-            editText.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
-            showPasswordIcon.setImageResource(R.drawable.visible)
-        } else {
-            editText.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-            showPasswordIcon.setImageResource(R.drawable.invisible)
-        }
-        editText.setSelection(editText.text.length)
-    }
+
     fun signupDatabase(username: String, email: String, phone: String, password: String) {
         val insertRowId = databaseUser.insertUser(username, email, phone, password, false)
         if (insertRowId != -1L) {

@@ -29,12 +29,12 @@ class Login : AppCompatActivity() {
         sharedPreferences = getSharedPreferences("login_prefs", Context.MODE_PRIVATE)
 
         binding.btnLogin.setOnClickListener {
-            val loginUsername = binding.loginUsernam.text.toString()
+            val loginUsername = binding.loginUsername.text.toString()
             val loginPassword = binding.loginPassword.text.toString()
 
             if (loginUsername.isEmpty() || loginPassword.isEmpty()) {
                 if (loginUsername.isEmpty()) {
-                    binding.loginUsernam.error = "Username field is empty"
+                    binding.loginUsername.error = "Username field is empty"
                 }
                 if (loginPassword.isEmpty()) {
                     binding.loginPassword.error = "Password field is empty"
@@ -43,7 +43,7 @@ class Login : AppCompatActivity() {
             }
 
             if (!isValidName(loginUsername)) {
-                binding.loginUsernam.error = "Invalid username format"
+                binding.loginUsername.error = "Invalid username format"
                 return@setOnClickListener
             }
 
@@ -58,22 +58,9 @@ class Login : AppCompatActivity() {
             val intent = Intent(this, SignUP::class.java)
             startActivity(intent)
         }
-        binding.showPasswordIcon.setOnClickListener {
-            togglePasswordVisibility(binding.loginPassword, binding.showPasswordIcon)
-        }
+
     }
 
-
-    private fun togglePasswordVisibility(editText: EditText, showPasswordIcon: ImageView) {
-        if (editText.inputType == (InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD)) {
-            editText.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
-            showPasswordIcon.setImageResource(R.drawable.visible)
-        } else {
-            editText.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-            showPasswordIcon.setImageResource(R.drawable.invisible)
-        }
-        editText.setSelection(editText.text.length)
-    }
 
     fun loginDatabase(username: String, password: String) {
         val userExist = databaseUser.readUser(username, password)

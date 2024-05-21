@@ -15,6 +15,7 @@ import com.example.myapplication.Model.Products
 import com.example.myapplication.R
 import com.example.myapplication.Repository.DataBasePanier
 import java.text.NumberFormat
+import java.util.Currency
 import java.util.Locale
 
 class AdapterSearch(var list:List<Products>, var itemClick: OnItemClickListener): RecyclerView.Adapter<AdapterSearch.CategoryViewHolder>(),
@@ -76,10 +77,14 @@ class AdapterSearch(var list:List<Products>, var itemClick: OnItemClickListener)
                 .diskCacheStrategy(DiskCacheStrategy.ALL) // Caching strategy
                 .into(imageview_info_Category)
 
-            val formattedPrice = NumberFormat.getCurrencyInstance().format(product.discount_Price_Product)
+            val currencyFormat = NumberFormat.getCurrencyInstance()
+            currencyFormat.currency = Currency.getInstance("MAD")
+
+            val formattedPrice = currencyFormat.format(product.price_Product)
             tvprice_info_Category.text = formattedPrice
-            val formattedPriceDiscount = NumberFormat.getCurrencyInstance().format(product.discount_Price_Product)
+            val formattedPriceDiscount = currencyFormat.format(product.discount_Price_Product)
             tvdiscount_price_info_Search.text = formattedPriceDiscount
+
             itemView.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
