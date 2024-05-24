@@ -3,6 +3,7 @@ package com.example.myapplication.View
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -14,6 +15,8 @@ import java.text.NumberFormat
 import java.util.Currency
 
 class AdapterPanier(var list:List<Products>, private val deleteListener: (Products) -> Unit, var itemClick: OnItemClickListener) : RecyclerView.Adapter<AdapterPanier.PanierViewHolder>() {
+
+    private val selectedProducts = mutableSetOf<Products>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PanierViewHolder {
         var view = LayoutInflater.from(parent.context).inflate(R.layout.info_rv_panier, parent, false)
 
@@ -34,8 +37,10 @@ class AdapterPanier(var list:List<Products>, private val deleteListener: (Produc
     interface OnItemClickListener {
         fun onItemClick(product: Products)
         fun onProductImageClicked(product: Products)
+        fun onItemSelectionChanged()
     }
     inner class PanierViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val checkboxProduct: CheckBox = itemView.findViewById(R.id.checkbox_product)
         private val imageDeletePanier: ImageView = itemView.findViewById(R.id.icon_delete_Panier)
         private val imageviewInfo: ImageView = itemView.findViewById(R.id.image_info_panier)
         private val tvnameInfo: TextView = itemView.findViewById(R.id.info_tv_namP_panier)
@@ -52,6 +57,19 @@ class AdapterPanier(var list:List<Products>, private val deleteListener: (Produc
 
             imageviewInfo.setOnClickListener {
                 itemClick.onProductImageClicked(list[adapterPosition])
+            }
+            checkboxProduct.setOnCheckedChangeListener { _, isChecked ->
+                val product = list[adapterPosition]
+                if (isChecked) {
+                    selectedProducts.add(product)
+                } else {
+                    selectedProducts.remove(product)
+                }
+                itemClick.onItemSelectionChanged()
+            }
+
+            imageDeletePanier.setOnClickListener {
+                deleteListener(list[adapterPosition])
             }
 
         }
@@ -70,10 +88,19 @@ class AdapterPanier(var list:List<Products>, private val deleteListener: (Produc
             val formattedPriceDiscount = currencyFormat.format(product.discount_Price_Product)
             tvpriceDiscountInfo.text = formattedPriceDiscount
 
-
-            imageDeletePanier.setOnClickListener {
-                deleteListener(product)
+            checkboxProduct.setOnCheckedChangeListener { _, isChecked ->
+                val product = list[adapterPosition]
+                if (isChecked) {
+                    selectedProducts.add(product)
+                } else {
+                    selectedProducts.remove(product)
+                }
+                itemClick.onItemSelectionChanged()
             }
+
         }
+    }
+    fun getSelectedProducts(): List<Products> {
+        return selectedProducts.toList()
     }
 }

@@ -51,29 +51,25 @@ class AddProductsActivity : AppCompatActivity() {
                 binding.addProductQuantity.error = "The field is empty"
                 binding.addProductPrice.error = "The field is empty"
                 binding.addProductPromotionPrice.error = "The field is empty"
-            }else if (!isValidNameDescriptionn(addnameproduct)){
-                binding.AddProductName.error = "The field is not valid"
             }else if (addnameproduct.isEmpty() || adddescriptionproduct.isEmpty()){
                 binding.AddProductDescription.error = "The field is empty"
                 binding.addProductQuantity.error = "The field is empty"
                 binding.addProductPrice.error = "The field is empty"
                 binding.addProductPromotionPrice.error = "The field is empty"
-            }else if (!isValidNameDescriptionn(addnameproduct) || !isValidNameDescriptionn(adddescriptionproduct)){
-                binding.AddProductDescription.error = "The field is not valid"
             }else if (addnameproduct.isEmpty() || adddescriptionproduct.isEmpty() || addquantityproduct.isEmpty()){
                 binding.addProductQuantity.error = "The field is empty"
                 binding.addProductPrice.error = "The field is empty"
                 binding.addProductPromotionPrice.error = "The field is empty"
-            }else if (!isValidNameDescriptionn(addnameproduct) || !isValidNameDescriptionn(adddescriptionproduct) || !isValidPraceQuantity(addquantityproduct)){
+            }else if (!isValidPraceQuantity(addquantityproduct)){
                 binding.addProductQuantity.error = "The field is not valid"
             }else if (addnameproduct.isEmpty() || adddescriptionproduct.isEmpty() || addquantityproduct.isEmpty() || addpriceproduct.isEmpty()){
                 binding.addProductPrice.error = "The field is empty"
                 binding.addProductPromotionPrice.error = "The field is empty"
-            }else if (!isValidNameDescriptionn(addnameproduct) || !isValidNameDescriptionn(adddescriptionproduct) || !isValidPraceQuantity(addquantityproduct) || !isValidPraceQuantity(addpriceproduct)){
+            }else if (!isValidPraceQuantity(addquantityproduct) || !isValidPraceQuantity(addpriceproduct)){
                 binding.addProductPrice.error = "The field is not valid"
             }else if (addnameproduct.isEmpty() || adddescriptionproduct.isEmpty() || addquantityproduct.isEmpty() || addpriceproduct.isEmpty() || addpromotion_price.isEmpty()){
                 binding.addProductPromotionPrice.error = "The field is empty"
-            }else if (!isValidNameDescriptionn(addnameproduct) || !isValidNameDescriptionn(adddescriptionproduct) || !isValidPraceQuantity(addquantityproduct) || !isValidPraceQuantity(addpriceproduct) || !isValidPraceQuantity(addpromotion_price)){
+            }else if (!isValidPraceQuantity(addquantityproduct) || !isValidPraceQuantity(addpriceproduct) || !isValidPraceQuantity(addpromotion_price)){
                 binding.addProductPromotionPrice.error = "The field is not valid"
             }else {
                 if (imageUri != null){
@@ -118,7 +114,7 @@ class AddProductsActivity : AppCompatActivity() {
         return degits != null && pattern.matches(degits)
     }
     private fun isValidNameDescriptionn(name: String?): Boolean {
-        val nameDescriptionRegex = "^[A-Za-z0-9 ]*$"
+        val nameDescriptionRegex = "^[A-Za-z0-9 \\-\\.\"'/\\,]+\$"
         val pattern = Regex(nameDescriptionRegex)
         return name != null && pattern.matches(name)
     }

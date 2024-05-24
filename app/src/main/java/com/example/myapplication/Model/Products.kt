@@ -14,7 +14,8 @@ data class Products(
     var discount_Price_Product: Double,
     var quantity_order: Int = 0,
     var isInCart: Boolean = false,
-    var isLiked: Boolean = false
+    var isLiked: Boolean = false,
+    var isSelected: Boolean = false
 ): Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
@@ -25,6 +26,7 @@ data class Products(
         parcel.readDouble(),
         parcel.readDouble(),
         parcel.readInt(),
+        parcel.readByte() != 0.toByte(),
         parcel.readByte() != 0.toByte(),
         parcel.readByte() != 0.toByte()
     )

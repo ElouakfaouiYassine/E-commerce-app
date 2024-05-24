@@ -36,6 +36,7 @@
         android:textColor="@color/black"
         android:textSize="12sp"
         android:maxLines="1"
+        android:ellipsize="end"
         android:layout_marginTop="5dp"
         android:layout_toEndOf="@+id/info_tv_discount_search"
         android:foreground="@drawable/strikethrough"
@@ -56,6 +57,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:ellipsize="end"
+        android:maxLines="1"
         android:layout_below="@id/info_tv_namP_category"
         android:text="@string/promotion_prace_of_prodact"
         android:textSize="15sp" />

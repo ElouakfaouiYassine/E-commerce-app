@@ -112,7 +112,7 @@ class InfoProductsFragment : Fragment() {
             findViewById<ImageView>(R.id.info_product).setImageURI(product.image_product)
             findViewById<TextView>(R.id.info_tv_namProduct).text = product.nam_Product
             findViewById<TextView>(R.id.info_tv_descriptionProduct).text = product.description_Product
-            findViewById<TextView>(R.id.info_tv_quantityProduct).text = product.quantity_Product.toString()
+            /*findViewById<TextView>(R.id.info_tv_quantityProduct).text = product.quantity_Product.toString()*/
             findViewById<TextView>(R.id.info_tv_priceProduct).text = product.price_Product.toString()
             findViewById<TextView>(R.id.info_tv_priceDiscountProduct).text = product.discount_Price_Product.toString()
             val formattedPrice = NumberFormat.getCurrencyInstance().format(product.price_Product)

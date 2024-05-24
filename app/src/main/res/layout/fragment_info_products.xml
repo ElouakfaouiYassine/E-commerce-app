@@ -53,7 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:textSize="20sp"
-        android:layout_marginTop="340dp"
+        android:layout_marginTop="335dp"
         android:text="@string/name_of_prodact" />
 
     <TextView
@@ -62,17 +62,48 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:textSize="21sp"
-        android:layout_marginTop="370dp"
+        android:layout_marginTop="360dp"
+        android:ellipsize="end"
+        android:maxLines="4"
         android:text="@string/description_of_prodact" />
 
-    <TextView
-        android:id="@+id/info_tv_quantityProduct"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:textSize="20sp"
-        android:layout_marginTop="400dp"
-        android:text="@string/quantity_of_prodact" />
+        android:layout_marginTop="465dp"
+        android:orientation="horizontal">
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:numStars="5"
+            android:rating="4.9"
+            android:layout_marginTop="3dp"
+            android:stepSize="0.1"
+            android:isIndicator="true"
+            style="?android:attr/ratingBarStyleSmall" />
+
+        <TextView
+            android:id="@+id/tv_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:text="4.9"
+            android:textSize="16sp"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/tv_sold_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="| 131 sold"
+            android:textSize="16sp"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+
 
     <Button
         android:id="@+id/btn_add_to_card"
