@@ -16,6 +16,7 @@
         android:orientation="vertical"
         android:padding="20dp">
 
+
         <ImageView
             android:id="@+id/AddProductImage"
             android:layout_width="match_parent"
@@ -25,7 +26,6 @@
             android:scaleType="fitXY"
             android:src="@drawable/background_error"
             tools:ignore="ContentDescription" />
-
 
         <Spinner
             android:id="@+id/sp_category"
@@ -131,7 +131,5 @@
             android:textColor="@color/white"
             android:text="@string/lanch_product"
             android:layout_marginTop="10dp"/>
-
-
     </LinearLayout>
 </LinearLayout>

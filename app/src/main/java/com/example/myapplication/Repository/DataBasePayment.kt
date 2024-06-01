@@ -54,5 +54,4 @@ class DataBasePayment(context: Context):SQLiteOpenHelper(context, DATABASE_NAME,
             -1L
         }
     }
-
 }

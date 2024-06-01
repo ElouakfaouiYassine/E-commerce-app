@@ -15,8 +15,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:iconifiedByDefault="false"
+        android:layout_marginBottom="8dp"
         android:queryHint="Search Products" />
 
 
@@ -178,7 +178,8 @@
         android:layout_alignParentEnd="true"
         android:layout_marginStart="9dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="13dp"/>
+        android:layout_marginEnd="9dp"
+        tools:listitem="@layout/info_rv_search"/>
 
 
     <FrameLayout

@@ -9,12 +9,10 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.SearchView
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.myapplication.Model.Products
 import com.example.myapplication.R
-import com.example.myapplication.Repository.DataBasePanier
 import com.example.myapplication.Repository.DatabaseHelper
 import android.Manifest
 import android.content.pm.PackageManager
@@ -172,6 +170,7 @@ class SearchFragment : Fragment(), AdapterSearch.OnItemClickListener {
         recyclerView.adapter = adapter
     }
 
+
     override fun onItemClick(product: Products) {
         val bundle = Bundle().apply {
             putParcelable("product", product)
@@ -197,6 +196,12 @@ class SearchFragment : Fragment(), AdapterSearch.OnItemClickListener {
             .addToBackStack(null)
             .commit()
     }
+
+    override fun onAddProductClicked(product: Products) {
+        val fragment = BottomSheetProductDetailFragment.newInstance(product)
+        fragment.show(parentFragmentManager, "productDetail")
+    }
+
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -215,4 +220,6 @@ class SearchFragment : Fragment(), AdapterSearch.OnItemClickListener {
             }
         }
     }
+
+
 }

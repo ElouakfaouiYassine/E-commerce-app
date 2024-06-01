@@ -7,18 +7,16 @@ import android.widget.Filter
 import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.myapplication.Model.Products
 import com.example.myapplication.R
-import com.example.myapplication.Repository.DataBasePanier
 import java.text.NumberFormat
 import java.util.Currency
 import java.util.Locale
 
-class AdapterSearch(var list:List<Products>, var itemClick: OnItemClickListener): RecyclerView.Adapter<AdapterSearch.CategoryViewHolder>(),
+class AdapterSearch(var list:List<Products>, private val onItemClick: SearchFragment): RecyclerView.Adapter<AdapterSearch.CategoryViewHolder>(),
     Filterable {
     var currentCategory: String = ""
     private var filteredList: List<Products> = list
@@ -42,6 +40,7 @@ class AdapterSearch(var list:List<Products>, var itemClick: OnItemClickListener)
     interface OnItemClickListener {
         fun onItemClick(product: Products)
         fun onProductImageClicked(product: Products)
+        fun onAddProductClicked(product: Products)
     }
     inner class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var imageview_info_Category: ImageView = itemView.findViewById(R.id.image_info_category)
@@ -52,15 +51,7 @@ class AdapterSearch(var list:List<Products>, var itemClick: OnItemClickListener)
         var tvdiscount_price_info_Search: TextView = itemView.findViewById(R.id.info_tv_discount_search)
         init {
             image_add_Panier.setOnClickListener {
-                val position = adapterPosition
-                if (position != RecyclerView.NO_POSITION) {
-                    val product = filteredList[position]
-                    val databasePanier = DataBasePanier(itemView.context)
-                    // Assuming the default quantity to add is 1
-                    databasePanier.addToCart(product, 1)  // Here we pass 1 as the quantity
-                    image_add_Panier.visibility = View.INVISIBLE
-                    Toast.makeText(itemView.context, "Product added to cart", Toast.LENGTH_SHORT).show()
-                }
+                onItemClick.onAddProductClicked(list[adapterPosition])
             }
 
         }
@@ -88,16 +79,23 @@ class AdapterSearch(var list:List<Products>, var itemClick: OnItemClickListener)
             itemView.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    itemClick.onItemClick(filteredList[position])
+                    onItemClick.onItemClick(filteredList[position])
                 }
             }
             imageview_info_Category.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    itemClick.onProductImageClicked(filteredList[position])
+                    onItemClick.onProductImageClicked(filteredList[position])
                 }
             }
-
+            if (product.isInCart) {
+                image_add_Panier.visibility = View.INVISIBLE
+            } else {
+                image_add_Panier.visibility = View.VISIBLE
+            }
+            image_add_Panier.setOnClickListener {
+                onItemClick.onAddProductClicked(product)
+            }
 
             product.image_product?.let { imageUri ->
                 imageview_info_Category.setImageURI(imageUri)

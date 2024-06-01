@@ -105,20 +105,16 @@ class HomeFragment : Fragment(), MyAdapter.OnItemClickListener {
             .commit()
     }
 
-    override fun onAddProductClicked(product: Products) {
-        val intent = Intent(context, ProductDetailActivity::class.java).apply {
-            putExtra("product", product)
+        override fun onAddProductClicked(product: Products) {
+            val fragment = BottomSheetProductDetailFragment.newInstance(product)
+            fragment.show(parentFragmentManager, "productDetail")
         }
-        startActivity(intent)
-    }
     /*override fun onAddProductClicked(product: Products) {
         product.isInCart = true
         adapter.notifyDataSetChanged()
 
         addToCart(product)
     }*/
-
-
 
     private fun removeFromCart(productName: String) {
         val result = panierDbHelper.removeFromCart(productName)

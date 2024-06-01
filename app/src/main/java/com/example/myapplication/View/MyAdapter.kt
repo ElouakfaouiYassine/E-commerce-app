@@ -46,8 +46,7 @@ class MyAdapter(private var list: List<Products>,
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val image_add_panier: ImageView = itemView.findViewById(R.id.icon_add_Panier)
         private val imageview_info: ImageView = itemView.findViewById(R.id.image_info)
-        private val tvdiscount_price_info: TextView =
-            itemView.findViewById(R.id.info_tv_discount_price)
+        private val tvdiscount_price_info: TextView = itemView.findViewById(R.id.info_tv_discount_price)
         private val tvdescription_info: TextView = itemView.findViewById(R.id.info_tv_description)
         private val tvprice_info: TextView = itemView.findViewById(R.id.info_tv_priceP)
         private val tvname_info: TextView = itemView.findViewById(R.id.info_tv_namP)

@@ -44,8 +44,7 @@ class DataBasePanier(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
 
     fun getExistingQuantity(db: SQLiteDatabase, productName: String): Int {
         val cursor = db.query(
-            TABLE_NAME,
-            arrayOf(COLUMN_QUANTITY_ORDER),  // Ensure this column is correctly named and included in the query
+            TABLE_NAME, arrayOf(COLUMN_QUANTITY_ORDER),  // Ensure this column is correctly named and included in the query
             "$COLUMN_NAME = ?",
             arrayOf(productName),
             null, null, null
