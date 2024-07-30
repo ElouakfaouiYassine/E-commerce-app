@@ -5,28 +5,41 @@
     android:layout_height="match_parent"
     tools:context=".View.Info_User_AdminFragment">
 
-    <SearchView
-        android:id="@+id/idSV"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:iconifiedByDefault="false"
-        android:queryHint="Search Prodacts" />
+        android:layout_height="wrap_content">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_info_admin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:layout_marginBottom="70dp"
-        tools:listitem="@layout/info_rv_admin"/>
+        <SearchView
+            android:id="@+id/idSV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:iconifiedByDefault="false"
+            android:queryHint="Search User" />
 
-    <Button
-        android:id="@+id/btn_add_profile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="830dp"
-        android:backgroundTint="@color/black"
-        android:text="Add Profile"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_info_admin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="70dp"
+            tools:listitem="@layout/info_rv_admin"/>
+
+        <Button
+            android:id="@+id/btn_add_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="830dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="13dp"
+            android:backgroundTint="@color/black"
+            android:text="Add Profile" />
+    </RelativeLayout>
+
 </FrameLayout>

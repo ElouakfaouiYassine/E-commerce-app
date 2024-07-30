@@ -34,7 +34,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             sharedPreferences = getSharedPreferences("login_prefs", Context.MODE_PRIVATE)
 
 
-
             // Check if the user is logged in
             if (sharedPreferences.getBoolean("isLoggedIn", false)) {
                 binding.tvSignup.visibility = View.GONE

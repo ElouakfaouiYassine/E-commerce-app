@@ -1,27 +1,27 @@
 package com.example.myapplication.View
 
-import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.InputType
-import android.widget.EditText
-import android.widget.ImageView
-import com.example.myapplication.R
-import com.example.myapplication.Repository.DataBaseUser
+import android.util.Log
+import android.widget.Toast
+import com.android.volley.Request
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.example.myapplication.databinding.ActivitySingUpBinding
 import com.google.android.material.snackbar.Snackbar
+import org.json.JSONObject
 
 class SignUP : AppCompatActivity() {
     lateinit var binding: ActivitySingUpBinding
-    lateinit var databaseUser: DataBaseUser
+    /*lateinit var databaseUser: DataBaseUser*/
     lateinit var sharedPreferences: SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySingUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        databaseUser = DataBaseUser(this)
+        /*databaseUser = DataBaseUser(this)*/
         binding.btnSignup.setOnClickListener{
             val signupusernam = binding.usernameSignup.text.toString()
             val signupemail = binding.emailSignup.text.toString()
@@ -61,7 +61,8 @@ class SignUP : AppCompatActivity() {
                 binding.passwordSignupVirefay.error = "The field is not valid verify your Confirm password"
             }else {
                 if (signupusernam.isNotEmpty() || signupemail.isNotEmpty() || signupphon.isNotEmpty() || signuppassword.isNotEmpty() || signuppasswordconfirm.isNotEmpty()){
-                    signupDatabase(signupusernam, signupemail, signupphon, signuppassword)
+                    /*signupDatabase(signupusernam, signupemail, signupphon, signuppassword)*/
+                    signupUser(signupusernam, signupemail, signupphon, signuppassword)
                 }else{
                     var snack = Snackbar.make(binding.root, "signup failed", Snackbar.LENGTH_LONG)
                     snack.show()
@@ -73,11 +74,43 @@ class SignUP : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-
     }
 
+    private fun signupUser(username: String, email: String, phone: String, password: String) {
+        val queue = Volley.newRequestQueue(this)
+        val url = "http://192.168.1.154/e-commerce%20app%20mobile%20back/signup.php"
 
-    fun signupDatabase(username: String, email: String, phone: String, password: String) {
+        val stringRequest = object : StringRequest(
+            Request.Method.POST,
+            url,
+            { response ->
+                val success = JSONObject(response).getBoolean("success")
+                if (success) {
+                    Toast.makeText(this, "Signup successful", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, Login::class.java)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    Toast.makeText(this, "Signup failed", Toast.LENGTH_SHORT).show()
+                }
+            },
+            { error ->
+                Log.e("NetworkError", "Error: ${error.message}", error)
+                Toast.makeText(this, "Network error: ${error.message}", Toast.LENGTH_SHORT).show()
+            }) {
+            override fun getParams(): MutableMap<String, String> {
+                val params = HashMap<String, String>()
+                params["username"] = username
+                params["email"] = email
+                params["phone"] = phone
+                params["password"] = password
+                return params
+            }
+        }
+
+        queue.add(stringRequest)
+    }
+    /*fun signupDatabase(username: String, email: String, phone: String, password: String) {
         val insertRowId = databaseUser.insertUser(username, email, phone, password, false)
         if (insertRowId != -1L) {
             Snackbar.make(binding.root, "signup successful", Snackbar.LENGTH_LONG).show()
@@ -88,7 +121,7 @@ class SignUP : AppCompatActivity() {
             Snackbar.make(binding.root, "signup failed", Snackbar.LENGTH_LONG).show()
         }
     }
-
+*/
 
     fun isValidEmail(email: String?): Boolean {
         val emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$"

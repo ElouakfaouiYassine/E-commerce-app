@@ -13,6 +13,7 @@ import com.example.myapplication.Model.OrderItem
 import com.example.myapplication.Model.Products
 import com.example.myapplication.R
 import java.text.NumberFormat
+import java.util.Currency
 
 class AdapterOrder(private var productList: List<OrderItem>, private val listener: OnItemClickListener) : RecyclerView.Adapter<AdapterOrder.OrderViewHolder>() {
 
@@ -61,9 +62,15 @@ class AdapterOrder(private var productList: List<OrderItem>, private val listene
                 .load(orderItem.image)
                 .into(imageOrder)
 
-            val formattedPrice = NumberFormat.getCurrencyInstance().format(orderItem.price)
+            val currencyFormat = NumberFormat.getCurrencyInstance()
+            currencyFormat.currency = Currency.getInstance("MAD")
+
+            // Format prices
+            val formattedPrice = currencyFormat.format(orderItem.price)
             priceOrder.text = formattedPrice
-            pricePromotionOrder.text = formattedPrice
+
+            val formattedPriceDiscount = currencyFormat.format(orderItem.price_promotion)
+            pricePromotionOrder.text = formattedPriceDiscount
         }
     }
 

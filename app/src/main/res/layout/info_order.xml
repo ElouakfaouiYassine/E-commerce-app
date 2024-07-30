@@ -20,65 +20,82 @@
         android:id="@+id/info_tv_nam_order"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="220dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="30dp"
+        android:textSize="18sp"
+        android:layout_toEndOf="@+id/image_order"
         android:text="@string/name_of_prodact" />
 
     <TextView
         android:id="@+id/info_tv_description_order"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/info_tv_nam_order"
+        android:layout_marginStart="210dp"
+        android:layout_marginTop="10dp"
+        android:maxLines="2"
+        android:ellipsize="end"
         android:text="@string/description_of_prodact"
-        android:layout_marginTop="60dp"
-        android:layout_marginStart="220dp"
         android:textSize="15sp" />
 
     <TextView
         android:id="@+id/info_tv_price_order"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="220dp"
-        android:layout_marginTop="90dp"
+        android:layout_below="@+id/info_tv_nam_order"
+        android:layout_marginStart="210dp"
+        android:layout_marginTop="50dp"
         android:text="@string/prace_of_prodact"
         android:textColor="@color/black"
-        android:textSize="20sp" />
+        android:foreground="@drawable/strikethrough"
+        android:textSize="15sp" />
+
     <TextView
         android:id="@+id/info_tv_pricePromorion_order"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="220dp"
-        android:layout_marginTop="120dp"
-        android:text="@string/prace_of_prodact"
-        android:textColor="@color/black"
+        android:layout_below="@+id/info_tv_description_order"
+        android:layout_marginStart="210dp"
+        android:layout_marginTop="29dp"
+        android:text="@string/promotion_prace_of_prodact"
+        android:textColor="@color/red"
         android:textSize="20sp" />
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Service"
-        android:textSize="16sp"
+        android:layout_below="@+id/image_order"
+        android:layout_marginTop="0dp"
+        android:background="#e7e7e7"
         android:paddingStart="15dp"
+        android:text="Service"
         android:textColor="@color/black"
-        android:layout_marginTop="165dp"
-        android:background="#e7e7e7"/>
+        android:textSize="16sp" />
 
     <TextView
+        android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Fast Delivery"
-        android:textSize="16sp"
-        android:textColor="#3cb80f"
+        android:layout_alignTop="@+id/textView"
+        android:layout_marginTop="20dp"
+        android:background="#e7e7e7"
         android:paddingStart="15dp"
-        android:layout_marginTop="185dp"
-        android:background="#e7e7e7"/>
+        android:text="Fast Delivery"
+        android:textColor="#3cb80f"
+        android:textSize="16sp" />
+
     <Button
         android:id="@+id/btn_return_order"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Returns/refunds"
-        android:layout_marginTop="210dp"
-        android:textColor="@color/black"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="3dp"
         android:background="@drawable/shap_button_white"
-        android:layout_marginStart="250dp"/>
+        android:text="Returns/refunds"
+        android:textColor="@color/black" />
 
 </RelativeLayout>
