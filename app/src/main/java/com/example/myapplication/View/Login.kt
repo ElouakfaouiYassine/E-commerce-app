@@ -67,9 +67,9 @@ class Login : AppCompatActivity() {
 
     fun loginDatabase(username:String, password:String) {
         val queue = Volley.newRequestQueue(this)
-        val url = "http://192.168.43.164/e-commerce%20app%20mobile%20back/login.php"
+            val url = "http://192.168.43.164/e-commerce%20app%20mobile%20back/login.php"
         val stringRequest = object : StringRequest(
-            Request.Method.GET,
+            Request.Method.POST,
             url,
             { response ->
                 val jsonResponse = JSONObject(response)

@@ -53,8 +53,7 @@ class FavoriteFragment : Fragment(), AdapterFavorite.OnItemClickListener {
             while (it.moveToNext()) {
                 val isLiked = it.getInt(columnIndexIsLiked) == 1
                 if (isLiked) {
-                    val imageUriString = it.getString(columnIndexImage)
-                    val imageUri = if (imageUriString != null) Uri.parse(imageUriString) else null
+                    val imageUri = it.getString(columnIndexImage)
                     val name = it.getString(columnIndexName) ?: ""
                     val description = it.getString(columnIndexDescription) ?: ""
                     val quantity = it.getInt(columnIndexQuantity)

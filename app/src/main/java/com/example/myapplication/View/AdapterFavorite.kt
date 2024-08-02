@@ -22,7 +22,7 @@ class AdapterFavorite(var list: List<Products>,  var itemClick: OnItemClickListe
 
     override fun onBindViewHolder(holder: ViewHolderFavorite, position: Int) {
         val currentFavorite = list[position]
-        holder.image_favorite.setImageURI(currentFavorite.image_product)
+        /*holder.image_favorite.setImageURI(currentFavorite.image_product)*/
         holder.tvname_favorite.text = currentFavorite.nam_Product
         holder.tvdescription_favorite.text = currentFavorite.description_Product
         holder.tvquantity_favorite.text = currentFavorite.quantity_Product.toString()

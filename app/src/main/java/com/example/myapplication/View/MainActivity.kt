@@ -39,7 +39,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 binding.tvSignup.visibility = View.GONE
                 binding.tvLogin.visibility = View.GONE
                 binding.tvLogout.visibility = View.VISIBLE
-                // Set click listener for "Log out" TextView
+
+                binding.tvLogout.setOnClickListener {
+                    showLogoutConfirmationDialog()
+                }
+
+                if (sharedPreferences.getBoolean("isAdmin", false)) {
+                    binding.tvAdmin.visibility = View.VISIBLE
+                } else {
+                    binding.tvAdmin.visibility = View.GONE
+                }
+                /*val username = sharedPreferences.getString("username", "")
+                binding.tvUser.text = "Welcome, $username!"
+                binding.tvUser.visibility = View.VISIBLE*/
+                /*// Set click listener for "Log out" TextView
                 binding.tvLogout.setOnClickListener {
                     showLogoutConfirmationDialog()
                 }
@@ -50,7 +63,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     binding.tvAdmin.visibility = View.VISIBLE
                 } else {
                     binding.tvAdmin.visibility = View.GONE
-                }
+                }*/
 
             } else {
                 binding.tvSignup.visibility = View.VISIBLE
@@ -58,6 +71,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 binding.tvLogout.visibility = View.GONE
                 binding.tvAdmin.visibility = View.GONE
             }
+
+
 
             val navigationView: NavigationView = binding.navView
             navigationView.setNavigationItemSelectedListener(this)
@@ -67,6 +82,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             )
             drawerLayout.addDrawerListener(toggle)
             toggle.syncState()
+
 
             if (savedInstanceState == null) {
                 supportFragmentManager.beginTransaction()

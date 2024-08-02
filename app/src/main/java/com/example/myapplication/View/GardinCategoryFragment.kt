@@ -64,8 +64,7 @@ class GardinCategoryFragment : Fragment() {
 
             while (cursor.moveToNext()) {
                 val id = cursor.getInt(idIndex)
-                val imageUriString = cursor.getString(imageIndex)
-                val imageUri = Uri.parse(imageUriString)
+                val imageUri = cursor.getString(imageIndex)
                 val name = cursor.getString(nameIndex)
                 val description = cursor.getString(descriptionIndex)
                 val quantity = cursor.getInt(quantityIndex)

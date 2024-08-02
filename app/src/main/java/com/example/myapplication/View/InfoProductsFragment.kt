@@ -100,7 +100,7 @@ class InfoProductsFragment : Fragment() {
     fun displayProductInfo(product: Products) {
         view?.apply {
             val imageView = findViewById<ImageView>(R.id.info_product)
-            product.image_product?.let { uri ->
+            /*product.image_product?.let { uri ->
                 try {
                     val inputStream = requireContext().contentResolver.openInputStream(uri)
                     val bitmap = BitmapFactory.decodeStream(inputStream)
@@ -108,8 +108,8 @@ class InfoProductsFragment : Fragment() {
                 } catch (e: IOException) {
                     e.printStackTrace()
                 }
-            }
-            findViewById<ImageView>(R.id.info_product).setImageURI(product.image_product)
+            }*/
+            /*findViewById<ImageView>(R.id.info_product).setImageURI(product.image_product)*/
             findViewById<TextView>(R.id.info_tv_namProduct).text = product.nam_Product
             findViewById<TextView>(R.id.info_tv_descriptionProduct).text = product.description_Product
             /*findViewById<TextView>(R.id.info_tv_quantityProduct).text = product.quantity_Product.toString()*/

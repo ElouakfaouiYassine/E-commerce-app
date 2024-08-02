@@ -97,9 +97,9 @@ class AdapterSearch(var list:List<Products>, private val onItemClick: SearchFrag
                 onItemClick.onAddProductClicked(product)
             }
 
-            product.image_product?.let { imageUri ->
+            /*product.image_product?.let { imageUri ->
                 imageview_info_Category.setImageURI(imageUri)
-            }
+            }*/
         }
     }
 

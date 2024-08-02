@@ -1,6 +1,7 @@
 package com.example.myapplication.View
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -67,7 +68,18 @@ class MyAdapter(private var list: List<Products>,
 
         fun bind(product: Products) {
             with(itemView) {
-                Glide.with(context).load(product.image_product).into(imageview_info)
+                // Assuming you have a base URL
+                val baseUrl = "http://192.168.43.164/e-commerce%20app%20mobile%20back/"
+                val imageUrl = baseUrl + product.image_product
+
+                Log.d("ImageURL", imageUrl)  // Log the full URL for debugging
+
+                Glide.with(context)
+                    .load(imageUrl)
+                    .placeholder(R.drawable.background_error) // Optional placeholder
+                    .error(R.drawable.background_error) // Optional error image
+                    .into(imageview_info)
+
                 tvdiscount_price_info.text = product.discount_Price_Product.toString()
                 tvdescription_info.text = product.description_Product
                 tvprice_info.text = product.price_Product.toString()
@@ -83,8 +95,6 @@ class MyAdapter(private var list: List<Products>,
                 val formattedPriceDiscount = currencyFormat.format(product.discount_Price_Product)
                 tvdiscount_price_info.text = formattedPriceDiscount
 
-
-
                 if (product.isInCart) {
                     image_add_panier.visibility = View.INVISIBLE
                 } else {
@@ -93,7 +103,6 @@ class MyAdapter(private var list: List<Products>,
 
                 image_add_panier.setOnClickListener {
                     onItemClick.onAddProductClicked(product)
-
                 }
             }
         }

@@ -61,7 +61,7 @@ class BottomSheetProductDetailFragment : BottomSheetDialogFragment() {
         productPrice.text = getString(R.string.price_format, product.price_Product)
         productDiscountPrice.text = getString(R.string.price_format, product.discount_Price_Product)
         productDiscription.text = product.description_Product
-        productImage.setImageURI(product.image_product)
+        /*productImage.setImageURI(product.image_product)*/
     }
 
     private fun setupAddToCartButton(view: View) {

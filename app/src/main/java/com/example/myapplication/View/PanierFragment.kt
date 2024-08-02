@@ -72,7 +72,7 @@ class PanierFragment : Fragment(), AdapterPanier.OnItemClickListener {
                 }
 
                 val id = c.getInt(idIndex)
-                val imageUri = Uri.parse(c.getString(imageIndex))
+                val imageUri = c.getString(imageIndex)
                 val name = c.getString(nameIndex)
                 val description = c.getString(descriptionIndex)
                 val quantity = c.getInt(quantityIndex)
