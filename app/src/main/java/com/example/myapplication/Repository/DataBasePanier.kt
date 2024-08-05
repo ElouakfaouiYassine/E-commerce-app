@@ -63,24 +63,24 @@ class DataBasePanier(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
 
     fun addToCart(product: Products, quantity: Int): Long {
         val db = writableDatabase
-        val existingQuantity = getExistingQuantity(db, product.nam_Product)
+        val existingQuantity = getExistingQuantity(db, product.name)
 
-        if (product.quantity_Product < quantity + existingQuantity) {
+        if (product.quantity < quantity + existingQuantity) {
             return -1L // Not enough stock
         }
 
         val values = ContentValues().apply {
-            put(COLUMN_IMAGE, product.image_product?.toString())
-            put(COLUMN_NAME, product.nam_Product)
-            put(COLUMN_DESCRIPTION, product.description_Product)
+            put(COLUMN_IMAGE, product.image?.toString())
+            put(COLUMN_NAME, product.name)
+            put(COLUMN_DESCRIPTION, product.description)
             put(COLUMN_QUANTITY_ORDER, quantity + existingQuantity) // Assuming you are tracking ordered quantity
-            put(COLUMN_PRICE, product.price_Product)
-            put(COLUMN_PROMOTION_PRICE, product.discount_Price_Product)
+            put(COLUMN_PRICE, product.price)
+            put(COLUMN_PROMOTION_PRICE, product.price_promotion)
         }
 
         // Update if already in cart, otherwise insert new
         return if (existingQuantity > 0) {
-            db.update(TABLE_NAME, values, "$COLUMN_NAME = ?", arrayOf(product.nam_Product)).toLong()
+            db.update(TABLE_NAME, values, "$COLUMN_NAME = ?", arrayOf(product.name)).toLong()
         } else {
             db.insert(TABLE_NAME, null, values)
         }

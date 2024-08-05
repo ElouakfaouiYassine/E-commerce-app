@@ -82,7 +82,7 @@ class HomeFragment : Fragment(), MyAdapter.OnItemClickListener {
     }
 
     override fun onDeleteProductClicked(product: Products) {
-        removeFromCart(product.nam_Product)
+        removeFromCart(product.name)
     }
 
     private fun removeFromCart(productName: String) {
@@ -92,7 +92,7 @@ class HomeFragment : Fragment(), MyAdapter.OnItemClickListener {
                 Snackbar.make(rootView, "Product removed from cart", Snackbar.LENGTH_LONG).show()
             }
 
-            val updatedList = newList.map { if (it.nam_Product == productName) it.copy(isInCart = false) else it }
+            val updatedList = newList.map { if (it.name == productName) it.copy(isInCart = false) else it }
             (recyclerView.adapter as? MyAdapter)?.updateData(updatedList)
         } else {
             view?.let { rootView ->

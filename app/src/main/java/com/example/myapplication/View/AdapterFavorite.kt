@@ -23,16 +23,16 @@ class AdapterFavorite(var list: List<Products>,  var itemClick: OnItemClickListe
     override fun onBindViewHolder(holder: ViewHolderFavorite, position: Int) {
         val currentFavorite = list[position]
         /*holder.image_favorite.setImageURI(currentFavorite.image_product)*/
-        holder.tvname_favorite.text = currentFavorite.nam_Product
-        holder.tvdescription_favorite.text = currentFavorite.description_Product
-        holder.tvquantity_favorite.text = currentFavorite.quantity_Product.toString()
-        holder.tvprice_favorite.text = currentFavorite.price_Product.toString()
-        holder.tvprice_Promotion_favorite.text = currentFavorite.discount_Price_Product .toString()
+        holder.tvname_favorite.text = currentFavorite.name
+        holder.tvdescription_favorite.text = currentFavorite.description
+        holder.tvquantity_favorite.text = currentFavorite.quantity.toString()
+        holder.tvprice_favorite.text = currentFavorite.price.toString()
+        holder.tvprice_Promotion_favorite.text = currentFavorite.price_promotion.toString()
 
 
-        val formattedPrice = NumberFormat.getCurrencyInstance().format(currentFavorite.price_Product)
+        val formattedPrice = NumberFormat.getCurrencyInstance().format(currentFavorite.price)
         holder.tvprice_favorite.text = formattedPrice
-        val formattedPriceDiscount = NumberFormat.getCurrencyInstance().format(currentFavorite.discount_Price_Product)
+        val formattedPriceDiscount = NumberFormat.getCurrencyInstance().format(currentFavorite.price_promotion)
         holder.tvprice_Promotion_favorite .text = formattedPriceDiscount
     }
 

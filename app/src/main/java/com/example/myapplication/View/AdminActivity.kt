@@ -13,16 +13,9 @@ class AdminActivity : AppCompatActivity() {
         binding = ActivityAdminBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnAddProduct.setOnClickListener {
-            var intent = Intent(this, AddProductsActivity::class.java)
-            startActivity(intent)
-        }
-        binding.btnUpdateProduct.setOnClickListener {
-            var intent = Intent(this, UpdateProductsActivity::class.java)
-            startActivity(intent)
-        }
-        binding.btnDeleteProduct.setOnClickListener {
-            var intent = Intent(this, DeleteProductsActivity::class.java)
+
+        binding.btnShowProducts.setOnClickListener {
+            var intent = Intent(this, ProductListActivity::class.java)
             startActivity(intent)
         }
         binding.btnShowUser.setOnClickListener {

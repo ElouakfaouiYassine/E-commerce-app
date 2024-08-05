@@ -70,7 +70,7 @@ class MyAdapter(private var list: List<Products>,
             with(itemView) {
                 // Assuming you have a base URL
                 val baseUrl = "http://192.168.43.164/e-commerce%20app%20mobile%20back/"
-                val imageUrl = baseUrl + product.image_product
+                val imageUrl = baseUrl + product.image
 
                 Log.d("ImageURL", imageUrl)  // Log the full URL for debugging
 
@@ -80,19 +80,19 @@ class MyAdapter(private var list: List<Products>,
                     .error(R.drawable.background_error) // Optional error image
                     .into(imageview_info)
 
-                tvdiscount_price_info.text = product.discount_Price_Product.toString()
-                tvdescription_info.text = product.description_Product
-                tvprice_info.text = product.price_Product.toString()
-                tvname_info.text = product.nam_Product
+                tvdiscount_price_info.text = product.price_promotion.toString()
+                tvdescription_info.text = product.description
+                tvprice_info.text = product.price.toString()
+                tvname_info.text = product.name
 
                 val currencyFormat = NumberFormat.getCurrencyInstance()
                 currencyFormat.currency = Currency.getInstance("MAD")
 
                 // Format prices
-                val formattedPrice = currencyFormat.format(product.price_Product)
+                val formattedPrice = currencyFormat.format(product.price)
                 tvprice_info.text = formattedPrice
 
-                val formattedPriceDiscount = currencyFormat.format(product.discount_Price_Product)
+                val formattedPriceDiscount = currencyFormat.format(product.price_promotion)
                 tvdiscount_price_info.text = formattedPriceDiscount
 
                 if (product.isInCart) {

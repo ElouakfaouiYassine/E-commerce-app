@@ -67,10 +67,8 @@ class UpdateProfileActivity : AppCompatActivity() {
             } else{
                 val rowsAffected = dataBaseUser.updateUserByEmail(emailUserUpdate, usernameUpdate, emailUpdate, phoneNumberUpdate,passwordUpdate)
                 if (rowsAffected > 0) {
-                    // Product updated successfully
                     Snackbar.make(binding.root, "User updated successfully", Snackbar.LENGTH_LONG).show()
                 } else {
-                    // Product not found or update failed
                     Snackbar.make(binding.root, "User not found or update failed", Snackbar.LENGTH_LONG).show()
                 }
             }

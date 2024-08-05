@@ -74,18 +74,18 @@ class AdapterPanier(var list:List<Products>, private val deleteListener: (Produc
 
         }
         fun bind(product: Products) {
-            Glide.with(itemView.context).load(product.image_product).into(imageviewInfo)
-            tvnameInfo.text = product.nam_Product
-            tvdescriptionInfo.text = product.description_Product
-            tvquantityInfo.text = product.quantity_Product.toString()
-            tvpriceInfo.text = product.price_Product.toString()
-            tvpriceDiscountInfo.text = product.discount_Price_Product.toString()
+            Glide.with(itemView.context).load(product.image).into(imageviewInfo)
+            tvnameInfo.text = product.name
+            tvdescriptionInfo.text = product.description
+            tvquantityInfo.text = product.quantity.toString()
+            tvpriceInfo.text = product.price.toString()
+            tvpriceDiscountInfo.text = product.price_promotion.toString()
             val currencyFormat = NumberFormat.getCurrencyInstance()
             currencyFormat.currency = Currency.getInstance("MAD")
-            val formattedPrice = currencyFormat.format(product.price_Product)
+            val formattedPrice = currencyFormat.format(product.price)
             tvpriceInfo.text = formattedPrice
 
-            val formattedPriceDiscount = currencyFormat.format(product.discount_Price_Product)
+            val formattedPriceDiscount = currencyFormat.format(product.price_promotion)
             tvpriceDiscountInfo.text = formattedPriceDiscount
 
             checkboxProduct.setOnCheckedChangeListener { _, isChecked ->
@@ -97,7 +97,6 @@ class AdapterPanier(var list:List<Products>, private val deleteListener: (Produc
                 }
                 itemClick.onItemSelectionChanged()
             }
-
         }
     }
     fun getSelectedProducts(): List<Products> {

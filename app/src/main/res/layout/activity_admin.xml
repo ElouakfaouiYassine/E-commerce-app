@@ -44,7 +44,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_gravity="center">
 
             <Button
                 android:id="@+id/btnShowUser"
@@ -53,23 +54,11 @@
                 android:layout_marginEnd="5dp"
                 android:text="@string/show_users"/>
             <Button
-                android:id="@+id/btnAddProduct"
+                android:id="@+id/btnShowProducts"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
-                android:text="@string/add_products"/>
-            <Button
-                android:id="@+id/btnUpdateProduct"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:text="@string/update_products"/>
-            <Button
-                android:id="@+id/btnDeleteProduct"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:text="@string/delete_products"/>
+                android:text="Show Products"/>
 
         </LinearLayout>
     </HorizontalScrollView>

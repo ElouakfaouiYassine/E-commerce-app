@@ -49,11 +49,11 @@ class OrderFragment : Fragment(),  AdapterOrder.OnItemClickListener{
             // Update UI with selected product
             val orderItem = OrderItem(
                 id = 0, // Set a temporary id, you may need to change this
-                image = product.image_product?.toString() ?: "", // Assuming Products has an image_product property
-                name = product.nam_Product,
-                description = product.description_Product,
-                price = product.price_Product.toDouble(), // Convert price to Double
-                price_promotion = product.discount_Price_Product.toDouble()
+                image = product.image?.toString() ?: "", // Assuming Products has an image_product property
+                name = product.name,
+                description = product.description,
+                price = product.price.toDouble(), // Convert price to Double
+                price_promotion = product.price_promotion.toDouble()
             )
             val productList = listOf(orderItem)
             adapter.updateData(productList)

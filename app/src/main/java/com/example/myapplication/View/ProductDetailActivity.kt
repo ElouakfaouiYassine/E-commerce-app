@@ -25,7 +25,7 @@ class ProductDetailActivity : AppCompatActivity() {
         findViewById<Button>(R.id.increaseQuantity).setOnClickListener {
             val quantityTextView: TextView = findViewById(R.id.quantityText)
             var quantity = quantityTextView.text.toString().toInt()
-            if (quantity < product.quantity_Product) {
+            if (quantity < product.quantity) {
                 quantity++
                 quantityTextView.text = quantity.toString()
             }
@@ -51,11 +51,11 @@ class ProductDetailActivity : AppCompatActivity() {
         val productImage: ImageView = findViewById(R.id.productImage)
 
 
-        productName.text = product.nam_Product
+        productName.text = product.name
 
-        productPrice.text = getString(R.string.price_format, product.price_Product)
-        productDiscountPrice.text = getString(R.string.price_format, product.discount_Price_Product)
-        productDiscription.text = product.description_Product
+        productPrice.text = getString(R.string.price_format, product.price)
+        productDiscountPrice.text = getString(R.string.price_format, product.price)
+        productDiscription.text = product.description
 
         /*roductImage.setImageURI(product.image_product)*/
 
@@ -68,7 +68,7 @@ class ProductDetailActivity : AppCompatActivity() {
             val quantityText: TextView = findViewById(R.id.quantityText)
             val quantity = quantityText.text.toString().toInt()
 
-            if (quantity <= product.quantity_Product) {
+            if (quantity <= product.quantity) {
                 addToCart(product, quantity)
             } else {
                 Snackbar.make(findViewById(android.R.id.content), "Insufficient stock", Snackbar.LENGTH_LONG).show()

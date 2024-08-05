@@ -15,23 +15,7 @@
         android:background="@drawable/shipedittext"
         android:orientation="vertical"
         android:padding="20dp">
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layout_NameProduct_update"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            app:endIconMode="clear_text">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/NameProduct_update"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/the_name_of_the_product_you_want_to_modify"
-                android:inputType="textPersonName"/>
-        </com.google.android.material.textfield.TextInputLayout>
 
 
         <ImageView

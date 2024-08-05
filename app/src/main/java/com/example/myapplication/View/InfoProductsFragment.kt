@@ -40,7 +40,7 @@ class InfoProductsFragment : Fragment() {
         val product = arguments?.getParcelable<Products>("product")
         product?.let {
             displayProductInfo(it)
-            isLiked = dbHelper?.isProductLiked(it.nam_Product) ?: false
+            isLiked = dbHelper?.isProductLiked(it.name) ?: false
             updateLikeButtonUI()
         }
         view.findViewById<ImageView>(R.id.info_product_Favorite).setOnClickListener {
@@ -83,7 +83,7 @@ class InfoProductsFragment : Fragment() {
 
     private fun updateProductLikeStatus(isLiked: Boolean) {
         val product = requireArguments().getParcelable<Products>("product")
-        val productName = product?.nam_Product
+        val productName = product?.name
 
         productName?.let { productName ->
             val rowsAffected = dbHelper?.updateProductLikeStatus(productName, isLiked)
@@ -110,20 +110,20 @@ class InfoProductsFragment : Fragment() {
                 }
             }*/
             /*findViewById<ImageView>(R.id.info_product).setImageURI(product.image_product)*/
-            findViewById<TextView>(R.id.info_tv_namProduct).text = product.nam_Product
-            findViewById<TextView>(R.id.info_tv_descriptionProduct).text = product.description_Product
+            findViewById<TextView>(R.id.info_tv_namProduct).text = product.name
+            findViewById<TextView>(R.id.info_tv_descriptionProduct).text = product.description
             /*findViewById<TextView>(R.id.info_tv_quantityProduct).text = product.quantity_Product.toString()*/
-            findViewById<TextView>(R.id.info_tv_priceProduct).text = product.price_Product.toString()
-            findViewById<TextView>(R.id.info_tv_priceDiscountProduct).text = product.discount_Price_Product.toString()
-            val formattedPrice = NumberFormat.getCurrencyInstance().format(product.price_Product)
+            findViewById<TextView>(R.id.info_tv_priceProduct).text = product.price.toString()
+            findViewById<TextView>(R.id.info_tv_priceDiscountProduct).text = product.price_promotion.toString()
+            val formattedPrice = NumberFormat.getCurrencyInstance().format(product.price)
             findViewById<TextView>(R.id.info_tv_priceProduct).text = formattedPrice
-            val formattedPriceDiscount = NumberFormat.getCurrencyInstance().format(product.discount_Price_Product)
+            val formattedPriceDiscount = NumberFormat.getCurrencyInstance().format(product.description)
             findViewById<TextView>(R.id.info_tv_priceDiscountProduct).text = formattedPriceDiscount
         }
     }
     private fun handleAddToCart(product: Products) {
         val database = DataBasePanier(requireContext())
-        if (database.isProductInCart(product.nam_Product)) {
+        if (database.isProductInCart(product.name)) {
             showSnackbar("Product already in cart")
         } else {
             openProductDetailActivity(product)

@@ -56,13 +56,13 @@ class AdapterSearch(var list:List<Products>, private val onItemClick: SearchFrag
 
         }
         fun bind(product: Products) {
-            tvname_info_Category.text = product.nam_Product
-            tvprice_info_Category.text = product.price_Product.toString()
-            tvprice_description_info_Category.text = product.description_Product.toString()
-            tvdiscount_price_info_Search.text = product.discount_Price_Product.toString()
+            tvname_info_Category.text = product.name
+            tvprice_info_Category.text = product.price.toString()
+            tvprice_description_info_Category.text = product.description.toString()
+            tvdiscount_price_info_Search.text = product.price_promotion.toString()
 
             Glide.with(itemView.context)
-                .load(product.image_product) // Pass your image URI or URL here
+                .load(product.image) // Pass your image URI or URL here
                 .placeholder(R.drawable.background_shape) // Placeholder image while loading
                 .error(R.drawable.background_error) // Error image if loading fails
                 .diskCacheStrategy(DiskCacheStrategy.ALL) // Caching strategy
@@ -71,9 +71,9 @@ class AdapterSearch(var list:List<Products>, private val onItemClick: SearchFrag
             val currencyFormat = NumberFormat.getCurrencyInstance()
             currencyFormat.currency = Currency.getInstance("MAD")
 
-            val formattedPrice = currencyFormat.format(product.price_Product)
+            val formattedPrice = currencyFormat.format(product.price)
             tvprice_info_Category.text = formattedPrice
-            val formattedPriceDiscount = currencyFormat.format(product.discount_Price_Product)
+            val formattedPriceDiscount = currencyFormat.format(product.price_promotion)
             tvdiscount_price_info_Search.text = formattedPriceDiscount
 
             itemView.setOnClickListener {
@@ -112,7 +112,7 @@ class AdapterSearch(var list:List<Products>, private val onItemClick: SearchFrag
                 } else {
                     val filterPattern = constraint.toString().toLowerCase(Locale.ROOT).trim()
                     for (item in list) {
-                        if (item.nam_Product.toLowerCase(Locale.ROOT).contains(filterPattern)) {
+                        if (item.name.toLowerCase(Locale.ROOT).contains(filterPattern)) {
                             filteredResults.add(item)
                         }
                     }

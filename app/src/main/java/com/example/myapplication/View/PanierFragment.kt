@@ -89,14 +89,14 @@ class PanierFragment : Fragment(), AdapterPanier.OnItemClickListener {
     }
 
     private fun updateTotalPrice() {
-        val totalPrice = productList.sumByDouble { it.price_Product * it.quantity_Product }
+        val totalPrice = productList.sumByDouble { it.price * it.quantity }
         val currencyFormat = NumberFormat.getCurrencyInstance()
         currencyFormat.currency = Currency.getInstance("MAD")
         val formattedTotalPrice = currencyFormat.format(totalPrice)
         tvTotalPrice.text = "Total: $formattedTotalPrice"
     }
     private fun removeProductFromCart(product: Products) {
-        val deletedRows = panierDbHelper.removeFromCart(product.nam_Product)
+        val deletedRows = panierDbHelper.removeFromCart(product.name)
         if (deletedRows > 0) {
             productList.remove(product)
             adapter.notifyDataSetChanged()
