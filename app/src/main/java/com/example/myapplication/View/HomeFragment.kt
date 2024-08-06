@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.myapplication.Model.NetworkHome
 import com.example.myapplication.Model.Products
+import com.example.myapplication.Model.Users
 import com.example.myapplication.R
 import com.example.myapplication.Repository.DataBasePanier
 import com.google.android.material.snackbar.Snackbar
@@ -19,8 +20,11 @@ class HomeFragment : Fragment(), MyAdapter.OnItemClickListener {
     lateinit var newList: ArrayList<Products>
     lateinit var recyclerView: RecyclerView
     lateinit var panierDbHelper: DataBasePanier
+    lateinit var users: Users
     lateinit var adapter: MyAdapter
+    lateinit var product:Products
     private lateinit var networkHome: NetworkHome
+     public
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -74,6 +78,7 @@ class HomeFragment : Fragment(), MyAdapter.OnItemClickListener {
             .replace(R.id.content_info_product, infoProductsFragment)
             .addToBackStack(null)
             .commit()
+
     }
 
     override fun onAddProductClicked(product: Products) {

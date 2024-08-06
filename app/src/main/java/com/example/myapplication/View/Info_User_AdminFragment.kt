@@ -1,17 +1,15 @@
 package com.example.myapplication.View
 
 import android.content.Intent
-import android.database.Cursor
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.example.myapplication.Model.Utilusateur
+import com.example.myapplication.Model.Users
 import com.example.myapplication.R
 import com.example.myapplication.Repository.DataBaseUser
 
@@ -19,7 +17,7 @@ import com.example.myapplication.Repository.DataBaseUser
 class Info_User_AdminFragment : Fragment() {
     lateinit var recyclerView:RecyclerView
     lateinit var dataBaseUser: DataBaseUser
-    lateinit var newList: ArrayList<Utilusateur>
+    lateinit var newList: ArrayList<Users>
     lateinit var btnAddProfil:Button
 
     override fun onCreateView(
@@ -43,21 +41,7 @@ class Info_User_AdminFragment : Fragment() {
     }
 
     fun displayUtilusateur(){
-        var newcursor: Cursor? = dataBaseUser.getInfoUtilusateur()
-        newList = ArrayList()
-        newcursor?.let {
-            val usernameIndex = it.getColumnIndex(DataBaseUser.COLUMN_USERNAME)
-            var emailIndex = it.getColumnIndex(DataBaseUser.COLUMN_EMAIL)
-            while (it.moveToNext()){
-                val name = if (usernameIndex != -1) it.getString(usernameIndex) else ""
-                val  email = if (emailIndex != -1) it.getString(emailIndex) else ""
-                val utilusateur = Utilusateur(name, email)
-                newList.add(utilusateur)
-            }
-            it.close()
-        }
-        val adapter = AdapterAdmin(newList, requireContext())
-        recyclerView.adapter = adapter
+
     }
 
 

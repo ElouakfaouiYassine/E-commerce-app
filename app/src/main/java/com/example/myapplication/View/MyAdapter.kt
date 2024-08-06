@@ -1,15 +1,13 @@
 package com.example.myapplication.View
 
-import android.content.Context
+
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.NumberPicker
+import android.widget.RelativeLayout
 import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.myapplication.Model.Products
@@ -17,8 +15,9 @@ import com.example.myapplication.R
 import java.text.NumberFormat
 import java.util.Currency
 
-class MyAdapter(private var list: List<Products>,
-                private val onItemClick: OnItemClickListener
+class MyAdapter(
+    private var list: List<Products>,
+    private val onItemClick: OnItemClickListener
 ) : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -45,6 +44,7 @@ class MyAdapter(private var list: List<Products>,
     }
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val relative_click:RelativeLayout = itemView.findViewById(R.id.click_product)
         private val image_add_panier: ImageView = itemView.findViewById(R.id.icon_add_Panier)
         private val imageview_info: ImageView = itemView.findViewById(R.id.image_info)
         private val tvdiscount_price_info: TextView = itemView.findViewById(R.id.info_tv_discount_price)
@@ -57,7 +57,7 @@ class MyAdapter(private var list: List<Products>,
                 onItemClick.onItemClick(list[adapterPosition])
             }
 
-            imageview_info.setOnClickListener {
+            relative_click.setOnClickListener {
                 onItemClick.onProductImageClicked(list[adapterPosition])
             }
 
@@ -68,16 +68,16 @@ class MyAdapter(private var list: List<Products>,
 
         fun bind(product: Products) {
             with(itemView) {
-                // Assuming you have a base URL
+
                 val baseUrl = "http://192.168.43.164/e-commerce%20app%20mobile%20back/"
                 val imageUrl = baseUrl + product.image
 
-                Log.d("ImageURL", imageUrl)  // Log the full URL for debugging
+                Log.d("ImageURL", imageUrl)
 
                 Glide.with(context)
                     .load(imageUrl)
-                    .placeholder(R.drawable.background_error) // Optional placeholder
-                    .error(R.drawable.background_error) // Optional error image
+                    .placeholder(R.drawable.background_error)
+                    .error(R.drawable.background_error)
                     .into(imageview_info)
 
                 tvdiscount_price_info.text = product.price_promotion.toString()

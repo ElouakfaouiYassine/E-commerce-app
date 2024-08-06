@@ -7,11 +7,17 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
+import com.bumptech.glide.Glide
 import com.example.myapplication.Model.Products
 import com.example.myapplication.R
 import com.example.myapplication.Repository.DataBasePanier
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
+import org.json.JSONException
+import org.json.JSONObject
 
 class BottomSheetProductDetailFragment : BottomSheetDialogFragment() {
 
@@ -54,14 +60,22 @@ class BottomSheetProductDetailFragment : BottomSheetDialogFragment() {
         val productName: TextView = view.findViewById(R.id.productName)
         val productPrice: TextView = view.findViewById(R.id.productPrice)
         val productDiscountPrice: TextView = view.findViewById(R.id.productDiscountPrice)
-        val productDiscription: TextView = view.findViewById(R.id.productDiscriptiton)
+        val productDescription: TextView = view.findViewById(R.id.productDescription)
         val productImage: ImageView = view.findViewById(R.id.productImage)
 
         productName.text = product.name
         productPrice.text = getString(R.string.price_format, product.price)
         productDiscountPrice.text = getString(R.string.price_format, product.price_promotion)
-        productDiscription.text = product.description
-        /*productImage.setImageURI(product.image_product)*/
+        productDescription.text = product.description
+
+        val baseUrl = "http://192.168.43.164/e-commerce%20app%20mobile%20back/"
+        val imageUrl = baseUrl + product.image
+
+        Glide.with(this)
+            .load(imageUrl)
+            .placeholder(R.drawable.background_error)
+            .error(R.drawable.background_error)
+            .into(productImage)
     }
 
     private fun setupAddToCartButton(view: View) {
@@ -79,13 +93,41 @@ class BottomSheetProductDetailFragment : BottomSheetDialogFragment() {
     }
 
     private fun addToCart(product: Products, quantity: Int) {
-        val dbPanier = DataBasePanier(requireContext())
-        val result = dbPanier.addToCart(product, quantity)
-        if (result == -1L) {
-            Snackbar.make(requireView(), "Failed to add product to cart or insufficient stock.", Snackbar.LENGTH_LONG).show()
-        } else {
-            Snackbar.make(requireView(), "Product added to cart successfully.", Snackbar.LENGTH_LONG).show()
+        val url = "http://192.168.43.164/e-commerce%20app%20mobile%20back/add_to_cart.php"
+
+        val requestQueue = Volley.newRequestQueue(requireContext())
+
+        val stringRequest = object : StringRequest(
+            Method.POST, url,
+            Response.Listener<String> { response ->
+                try {
+                    val jsonObject = JSONObject(response)
+                    val success = jsonObject.getBoolean("success")
+                    val message = jsonObject.getString("message")
+                    Snackbar.make(requireView(), message, Snackbar.LENGTH_LONG).show()
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                    Snackbar.make(requireView(), "JSON parsing error", Snackbar.LENGTH_LONG).show()
+                }
+            },
+            Response.ErrorListener { error ->
+                error.printStackTrace()
+                Snackbar.make(requireView(), "Volley error: ${error.message}", Snackbar.LENGTH_LONG).show()
+            }
+        ) {
+            override fun getParams(): Map<String, String> {
+                val params = HashMap<String, String>()
+                params["name"] = product.name
+                params["description"] = product.description
+                params["price"] = product.price.toString()
+                params["promotion_price"] = product.price_promotion.toString()
+                params["quantity"] = quantity.toString()
+                params["image"] = product.image
+                return params
+            }
         }
+
+        requestQueue.add(stringRequest)
     }
 
     companion object {

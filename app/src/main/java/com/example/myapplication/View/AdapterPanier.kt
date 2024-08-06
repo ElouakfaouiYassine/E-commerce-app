@@ -1,5 +1,6 @@
 package com.example.myapplication.View
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,16 +15,24 @@ import com.example.myapplication.R
 import java.text.NumberFormat
 import java.util.Currency
 
-class AdapterPanier(var list:List<Products>, private val deleteListener: (Products) -> Unit, var itemClick: OnItemClickListener) : RecyclerView.Adapter<AdapterPanier.PanierViewHolder>() {
+class AdapterPanier(
+    var list: List<Products>,
+    private val deleteListener: (Products) -> Unit,
+    var itemClick: OnItemClickListener
+) : RecyclerView.Adapter<AdapterPanier.PanierViewHolder>() {
 
     private val selectedProducts = mutableSetOf<Products>()
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PanierViewHolder {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.info_rv_panier, parent, false)
 
+    companion object {
+        private const val baseUrl = "http://192.168.43.164/e-commerce%20app%20mobile%20back"
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PanierViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.info_rv_panier, parent, false)
         return PanierViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: AdapterPanier.PanierViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: PanierViewHolder, position: Int) {
         val currentProduct = list[position]
         holder.bind(currentProduct)
     }
@@ -32,6 +41,7 @@ class AdapterPanier(var list:List<Products>, private val deleteListener: (Produc
         list = newList
         notifyDataSetChanged()
     }
+
     override fun getItemCount() = list.size
 
     interface OnItemClickListener {
@@ -39,6 +49,7 @@ class AdapterPanier(var list:List<Products>, private val deleteListener: (Produc
         fun onProductImageClicked(product: Products)
         fun onItemSelectionChanged()
     }
+
     inner class PanierViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val checkboxProduct: CheckBox = itemView.findViewById(R.id.checkbox_product)
         private val imageDeletePanier: ImageView = itemView.findViewById(R.id.icon_delete_Panier)
@@ -50,7 +61,6 @@ class AdapterPanier(var list:List<Products>, private val deleteListener: (Produc
         private val tvpriceDiscountInfo: TextView = itemView.findViewById(R.id.info_tv_priceDiscount_panier)
 
         init {
-
             itemView.setOnClickListener {
                 itemClick.onItemClick(list[adapterPosition])
             }
@@ -58,6 +68,7 @@ class AdapterPanier(var list:List<Products>, private val deleteListener: (Produc
             imageviewInfo.setOnClickListener {
                 itemClick.onProductImageClicked(list[adapterPosition])
             }
+
             checkboxProduct.setOnCheckedChangeListener { _, isChecked ->
                 val product = list[adapterPosition]
                 if (isChecked) {
@@ -71,34 +82,30 @@ class AdapterPanier(var list:List<Products>, private val deleteListener: (Produc
             imageDeletePanier.setOnClickListener {
                 deleteListener(list[adapterPosition])
             }
-
         }
+
         fun bind(product: Products) {
-            Glide.with(itemView.context).load(product.image).into(imageviewInfo)
+            val imageUrl = "$baseUrl/${product.image}"
+            Glide.with(itemView.context)
+                .load(imageUrl)
+                .placeholder(R.drawable.background_error)
+                .error(R.drawable.background_error)
+                .into(imageviewInfo)
+
             tvnameInfo.text = product.name
             tvdescriptionInfo.text = product.description
             tvquantityInfo.text = product.quantity.toString()
-            tvpriceInfo.text = product.price.toString()
-            tvpriceDiscountInfo.text = product.price_promotion.toString()
+            tvpriceInfo.text = formatCurrency(product.price)
+            tvpriceDiscountInfo.text = formatCurrency(product.price_promotion)
+        }
+
+        private fun formatCurrency(amount: Double): String {
             val currencyFormat = NumberFormat.getCurrencyInstance()
             currencyFormat.currency = Currency.getInstance("MAD")
-            val formattedPrice = currencyFormat.format(product.price)
-            tvpriceInfo.text = formattedPrice
-
-            val formattedPriceDiscount = currencyFormat.format(product.price_promotion)
-            tvpriceDiscountInfo.text = formattedPriceDiscount
-
-            checkboxProduct.setOnCheckedChangeListener { _, isChecked ->
-                val product = list[adapterPosition]
-                if (isChecked) {
-                    selectedProducts.add(product)
-                } else {
-                    selectedProducts.remove(product)
-                }
-                itemClick.onItemSelectionChanged()
-            }
+            return currencyFormat.format(amount)
         }
     }
+
     fun getSelectedProducts(): List<Products> {
         return selectedProducts.toList()
     }

@@ -1,5 +1,6 @@
 package com.example.myapplication.View
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -13,34 +14,38 @@ import com.example.myapplication.R
 import android.graphics.BitmapFactory
 import android.util.Log
 import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
+import com.bumptech.glide.Glide
 import com.example.myapplication.Repository.DataBasePanier
 import com.example.myapplication.Repository.DatabaseHelper
 import com.example.myapplication.ViewModel.SharedViewModel
 import com.google.android.material.snackbar.Snackbar
+import org.json.JSONException
+import org.json.JSONObject
 import java.io.IOException
 import java.text.NumberFormat
+import java.util.Currency
 
 class InfoProductsFragment : Fragment() {
-    private var dbHelper: DatabaseHelper? = null
     private var isLiked = false
     private val sharedViewModel: SharedViewModel by activityViewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view:View = inflater.inflate(R.layout.fragment_info_products, container, false)
-
-        return view
+        return inflater.inflate(R.layout.fragment_info_products, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        dbHelper = DatabaseHelper(requireContext())
         val product = arguments?.getParcelable<Products>("product")
         product?.let {
             displayProductInfo(it)
-            isLiked = dbHelper?.isProductLiked(it.name) ?: false
             updateLikeButtonUI()
         }
         view.findViewById<ImageView>(R.id.info_product_Favorite).setOnClickListener {
@@ -48,7 +53,8 @@ class InfoProductsFragment : Fragment() {
         }
         view.findViewById<Button>(R.id.btn_add_to_card).setOnClickListener {
             product?.let { product ->
-                handleAddToCart(product)
+                val bottomSheetFragment = BottomSheetProductDetailFragment.newInstance(product)
+                bottomSheetFragment.show(parentFragmentManager, bottomSheetFragment.tag)
             }
         }
 
@@ -63,81 +69,100 @@ class InfoProductsFragment : Fragment() {
                 .addToBackStack(null)
                 .commit()
         }
-
-
     }
 
-
     private fun updateLikeButtonUI() {
-        // Update the UI of the like button based on the liked status
         val favoriteImageView = view?.findViewById<ImageView>(R.id.info_product_Favorite)
         favoriteImageView?.setImageResource(
             if (isLiked) R.drawable.icon_favorite else R.drawable.icon_nonfavorite
         )
     }
+
     private fun toggleLikeStatus() {
         isLiked = !isLiked // Toggle liked status
-        updateProductLikeStatus(isLiked) // Update liked status in the database
+        val product = arguments?.getParcelable<Products>("product")
+        product?.let {
+            if (isLiked) {
+                val userId = getUserId() // Retrieve the user ID
+                if (userId == -1) {
+                    Toast.makeText(requireContext(), "User not logged in", Toast.LENGTH_LONG).show()
+                    return
+                }
+                addProductToFavorites(it.id, userId) // Pass the product ID and user ID
+            }
+        }
         updateLikeButtonUI()
     }
 
-    private fun updateProductLikeStatus(isLiked: Boolean) {
-        val product = requireArguments().getParcelable<Products>("product")
-        val productName = product?.name
-
-        productName?.let { productName ->
-            val rowsAffected = dbHelper?.updateProductLikeStatus(productName, isLiked)
-            if (rowsAffected == null || rowsAffected == -1) {
-                Log.e("UpdateStatus", "Failed to update like status for product: $productName")
-            } else {
-                Log.d("UpdateStatus", "Successfully updated like status for product: $productName")
-            }
-        } ?: Log.e("UpdateStatus", "Product name is null")
-    }
-
-
-
-    fun displayProductInfo(product: Products) {
-        view?.apply {
-            val imageView = findViewById<ImageView>(R.id.info_product)
-            /*product.image_product?.let { uri ->
+    private fun addProductToFavorites(productId: Int, userId: Int) {
+        val url = "http://192.168.43.164/e-commerce%20app%20mobile%20back/add_to_favorites.php"
+        val stringRequest = object : StringRequest(
+            Method.POST, url,
+            Response.Listener { response ->
+                Log.d("Server Response", response)
                 try {
-                    val inputStream = requireContext().contentResolver.openInputStream(uri)
-                    val bitmap = BitmapFactory.decodeStream(inputStream)
-                    imageView.setImageBitmap(bitmap)
-                } catch (e: IOException) {
+                    val jsonObject = JSONObject(response)
+                    val success = jsonObject.getBoolean("success")
+                    if (success) {
+                        Toast.makeText(requireContext(), "Added to favorites", Toast.LENGTH_LONG).show()
+                    } else {
+                        val message = jsonObject.optString("message", "Unknown error")
+                        Toast.makeText(requireContext(), "Error: $message", Toast.LENGTH_LONG).show()
+                    }
+                } catch (e: JSONException) {
                     e.printStackTrace()
+                    Log.d("favorite exception", "Error: ${e.message}")
+                    Toast.makeText(requireContext(), "Error: ${e.message}", Toast.LENGTH_LONG).show()
                 }
-            }*/
-            /*findViewById<ImageView>(R.id.info_product).setImageURI(product.image_product)*/
-            findViewById<TextView>(R.id.info_tv_namProduct).text = product.name
-            findViewById<TextView>(R.id.info_tv_descriptionProduct).text = product.description
-            /*findViewById<TextView>(R.id.info_tv_quantityProduct).text = product.quantity_Product.toString()*/
-            findViewById<TextView>(R.id.info_tv_priceProduct).text = product.price.toString()
-            findViewById<TextView>(R.id.info_tv_priceDiscountProduct).text = product.price_promotion.toString()
-            val formattedPrice = NumberFormat.getCurrencyInstance().format(product.price)
-            findViewById<TextView>(R.id.info_tv_priceProduct).text = formattedPrice
-            val formattedPriceDiscount = NumberFormat.getCurrencyInstance().format(product.description)
-            findViewById<TextView>(R.id.info_tv_priceDiscountProduct).text = formattedPriceDiscount
+            },
+            Response.ErrorListener { error ->
+                Log.d("add favorite", "Error: ${error.message}")
+                Toast.makeText(requireContext(), "Error: ${error.message}", Toast.LENGTH_LONG).show()
+            }
+        ) {
+            override fun getParams(): Map<String, String> {
+                val params = HashMap<String, String>()
+                params["product_id"] = productId.toString()
+                params["user_id"] = userId.toString() // Use the retrieved user ID
+                Log.d("Params", "Product ID: $productId, User ID: $userId")
+                return params
+            }
         }
-    }
-    private fun handleAddToCart(product: Products) {
-        val database = DataBasePanier(requireContext())
-        if (database.isProductInCart(product.name)) {
-            showSnackbar("Product already in cart")
-        } else {
-            openProductDetailActivity(product)
-        }
+
+        Volley.newRequestQueue(requireContext()).add(stringRequest)
     }
 
-    private fun openProductDetailActivity(product: Products) {
-        val intent = Intent(requireContext(), ProductDetailActivity::class.java).apply {
-            putExtra("product", product)
-        }
-        startActivity(intent)
+    private fun getUserId(): Int {
+        val sharedPref = requireActivity().getSharedPreferences("login_prefs", Context.MODE_PRIVATE)
+        return sharedPref.getInt("id", -1) // Use the correct key here
     }
 
-    private fun showSnackbar(message: String) {
-        Snackbar.make(requireView(), message, Snackbar.LENGTH_LONG).show()
+
+    private fun displayProductInfo(product: Products) {
+        val baseUrl = "http://192.168.43.164/e-commerce%20app%20mobile%20back/"
+        val imageUrl = baseUrl + product.image
+        Log.d("ImageURL", imageUrl) // Log the full URL for debugging
+        val productImage = view?.findViewById<ImageView>(R.id.info_product)
+        if (productImage != null) {
+            Glide.with(this)
+                .load(imageUrl)
+                .placeholder(R.drawable.background_error)
+                .error(R.drawable.background_error)
+                .into(productImage)
+        }
+
+        view?.findViewById<TextView>(R.id.info_tv_namProduct)?.text = product.name
+        view?.findViewById<TextView>(R.id.info_tv_descriptionProduct)?.text = product.description
+
+        val priceTextView = view?.findViewById<TextView>(R.id.info_tv_priceProduct)
+        val currencyFormat = NumberFormat.getCurrencyInstance()
+        currencyFormat.currency = Currency.getInstance("MAD")
+        val formattedPrice = currencyFormat.format(product.price)
+        priceTextView?.text = formattedPrice
+
+        val promotion_priceTextView = view?.findViewById<TextView>(R.id.info_tv_priceDiscountProduct)
+        val formattedPricePromotion = currencyFormat.format(product.price_promotion)
+        promotion_priceTextView?.text = formattedPricePromotion
     }
 }
+

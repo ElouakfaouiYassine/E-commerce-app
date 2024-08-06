@@ -112,11 +112,11 @@ class SignUP : AppCompatActivity() {
                     params["email"] = email
                     params["phone"] = phone
                     params["password"] = password
-                    params["isAdmin"] = if (username == "Admin" && password == "Admin.@123") "1" else "0"
+                    params["isAdmin"] =
+                        if (username == "Admin" && password == "Admin.@123") "1" else "0"
                     return params
                 }
             }
-
             queue.add(stringRequest)
         }
         /*fun signupDatabase(username: String, email: String, phone: String, password: String) {

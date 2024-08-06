@@ -29,17 +29,8 @@ class UpdateProductsActivity : AppCompatActivity() {
         val productPrice = intent.getStringExtra("PRODUCT_PRICE")
         val productPromotionPrice = intent.getStringExtra("PRODUCT_PRICE_PROMOTION")
 
-        Log.d("UpdateProductsActivity", "Product ID: $productId")
-        Log.d("UpdateProductsActivity", "Product Name: $productName")
-        Log.d("UpdateProductsActivity", "Product Description: $productDescription")
-        Log.d("UpdateProductsActivity", "Product Image: $productImage")
-        Log.d("UpdateProductsActivity", "Product Quantity: $productQuantity")
-        Log.d("UpdateProductsActivity", "Product Price: $productPrice")
-        Log.d("UpdateProductsActivity", "Product Price Promotion: $productPromotionPrice")
-
         if (productId.isNullOrEmpty()) {
-            Log.e("UpdateProductsActivity", "Product ID is missing.")
-            finish() // Close activity if product ID is missing
+            finish()
             return
         }
 
@@ -73,7 +64,6 @@ class UpdateProductsActivity : AppCompatActivity() {
             val imageUri: Uri? = binding.UpdateProductImage.tag as Uri?
 
             if (validateInput(newName, newDescription, newQuantity, newPrice, newPricePromotion)) {
-                Log.d("UpdateProducttttt", "productId: $productId, newName: $newName, newDescription: $newDescription, newQuantity: $newQuantity, newPrice: $newPrice, newPricePromotion: $newPricePromotion, imageUri: $imageUri")
                 updateProduct(productId, imageUri, newName, newDescription, newQuantity, newPrice, newPricePromotion)
             }
         }
@@ -96,11 +86,9 @@ class UpdateProductsActivity : AppCompatActivity() {
             url,
             Response.Listener { response ->
                 val responseData = String(response.data)
-                Log.d("ServerResponse", responseData)
                 Snackbar.make(binding.root, "Product updated successfully", Snackbar.LENGTH_LONG).show()
             },
             Response.ErrorListener { error ->
-                Log.e("VolleyError", "Error: ${error.message}")
                 Snackbar.make(binding.root, "Error: ${error.message}", Snackbar.LENGTH_LONG).show()
             }
         ) {

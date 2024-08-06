@@ -57,9 +57,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            android:textSize="20sp"
             android:layout_marginTop="335dp"
-            android:text="@string/name_of_prodact" />
+            android:text="@string/name_of_prodact"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/info_tv_descriptionProduct"
@@ -82,15 +82,15 @@
 
             <RatingBar
                 android:id="@+id/ratingBar"
+                style="?android:attr/ratingBarStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
                 android:layout_marginEnd="10dp"
+                android:isIndicator="true"
                 android:numStars="5"
                 android:rating="4.9"
-                android:layout_marginTop="3dp"
-                android:stepSize="0.1"
-                android:isIndicator="true"
-                style="?android:attr/ratingBarStyleSmall" />
+                android:stepSize="0.1" />
 
             <TextView
                 android:id="@+id/tv_rating"
@@ -98,16 +98,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:text="4.9"
-                android:textSize="16sp"
-                android:textColor="@android:color/black" />
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/tv_sold_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="| 131 sold"
-                android:textSize="16sp"
-                android:textColor="@android:color/black" />
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
         </LinearLayout>
 
 
@@ -134,7 +134,6 @@
             android:textColor="@color/white" />
 
     </RelativeLayout>
-
 
 
 </FrameLayout>

@@ -9,14 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.Model.Utilusateur
+import com.example.myapplication.Model.Users
 import com.example.myapplication.R
 import com.example.myapplication.Repository.DataBaseUser
 import com.google.android.material.snackbar.Snackbar
 
-class AdapterAdmin(var list: List<Utilusateur>, val context: Context): RecyclerView.Adapter<AdapterAdmin.UtilusateurViewHolder>() {
+class AdapterAdmin(var list: List<Users>, val context: Context): RecyclerView.Adapter<AdapterAdmin.UtilusateurViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UtilusateurViewHolder {
         var view = LayoutInflater.from(parent.context).inflate(R.layout.info_rv_admin, parent, false)

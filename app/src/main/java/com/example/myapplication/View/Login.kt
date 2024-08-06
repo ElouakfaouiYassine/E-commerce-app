@@ -5,17 +5,9 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.InputType
-import android.util.Log
-import android.view.View
-import android.widget.EditText
-import android.widget.ImageView
-import androidx.core.view.marginBottom
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.example.myapplication.R
-import com.example.myapplication.Repository.DataBaseUser
 import com.example.myapplication.databinding.ActivityLoginBinding
 import com.google.android.material.snackbar.Snackbar
 import org.json.JSONObject
@@ -75,7 +67,9 @@ class Login : AppCompatActivity() {
                 val jsonResponse = JSONObject(response)
                 if (jsonResponse.getBoolean("success")) {
                     Snackbar.make(binding.root, "Login successful", Snackbar.LENGTH_LONG).show()
+                    val userId = jsonResponse.getInt("id")
                     sharedPreferences.edit().putBoolean("isLoggedIn", true).apply()
+                    sharedPreferences.edit().putInt("id", userId).apply()
                     sharedPreferences.edit().putBoolean("isAdmin", jsonResponse.getBoolean("isAdmin")).apply()
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
