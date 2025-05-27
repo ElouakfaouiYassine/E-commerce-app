@@ -7,16 +7,26 @@ A full-stack e-commerce mobile app built using **Kotlin** (Android), **PHP** (ba
 ## 📱 App Screenshots
 
 ### 🔐 Authentication
-<img src="![photo_1_2025-03-26_23-52-47](https://github.com/user-attachments/assets/58e1dee5-836b-4c87-8460-0149361483fb)" width="200"/> <img src="![photo_2_2025-03-26_23-52-47](https://github.com/user-attachments/assets/dd8e9e32-3126-455b-8a7e-4797190a12ab)" width="200"/>
+[photo_1_2025-03-26_23-52-47](https://github.com/user-attachments/assets/58e1dee5-836b-4c87-8460-0149361483fb)
+
+![photo_2_2025-03-26_23-52-47](https://github.com/user-attachments/assets/dd8e9e32-3126-455b-8a7e-4797190a12ab)
 
 ### 🛍️ Product Catalog
-<img src="![photo_2024-07-26_10-12-18](https://github.com/user-attachments/assets/b3020130-ab70-425e-ad6c-9fdeb5bb0a5a)" width="200"/> <img src="![photo_5_2025-03-26_23-52-47](https://github.com/user-attachments/assets/ede6f36c-bf67-4e02-adb2-ef4ca28c56c5)" width="200"/>
+[photo_2024-07-26_10-12-18](https://github.com/user-attachments/assets/b3020130-ab70-425e-ad6c-9fdeb5bb0a5a)
 
-<img src="![photo_2024-06-02_14-32-02](https://github.com/user-attachments/assets/9af75dc8-f008-4d91-96c0-04fe93eda068)" width="200"/>  <img src="![photo_2024-06-02_14-33-19](https://github.com/user-attachments/assets/6d721f2e-b12f-4e5c-a363-55faf584b4e5)" width="200"/>
+[photo_5_2025-03-26_23-52-47](https://github.com/user-attachments/assets/ede6f36c-bf67-4e02-adb2-ef4ca28c56c5)
 
-<img src="![photo_2024-06-02_14-39-28](https://github.com/user-attachments/assets/22f6f1c2-cb95-4e58-b297-315cf1c368c3)" width="200"/>  <img src="![photo_3_2024-07-26_10-22-06](https://github.com/user-attachments/assets/bf89cd97-c474-4a4b-a50f-90e3641c7685)" width="200"/>
+[photo_2024-06-02_14-32-02](https://github.com/user-attachments/assets/9af75dc8-f008-4d91-96c0-04fe93eda068)
 
-<img src="![photo_4_2025-03-26_23-52-47 - Copy](https://github.com/user-attachments/assets/e21c97a5-5bf1-4db1-8bed-5792a5cd505f)" width="200"/>  <img src="![photo_2024-06-02_14-07-16](https://github.com/user-attachments/assets/e6b9b7e6-d3ef-47d3-a1d7-7e18ca1c4fe6)" width="200"/>
+[photo_2024-06-02_14-33-19](https://github.com/user-attachments/assets/6d721f2e-b12f-4e5c-a363-55faf584b4e5)
+
+[photo_2024-06-02_14-39-28](https://github.com/user-attachments/assets/22f6f1c2-cb95-4e58-b297-315cf1c368c3)
+
+[photo_3_2024-07-26_10-22-06](https://github.com/user-attachments/assets/bf89cd97-c474-4a4b-a50f-90e3641c7685)
+
+[photo_4_2025-03-26_23-52-47 - Copy](https://github.com/user-attachments/assets/e21c97a5-5bf1-4db1-8bed-5792a5cd505f) 
+
+[photo_2024-06-02_14-07-16](https://github.com/user-attachments/assets/e6b9b7e6-d3ef-47d3-a1d7-7e18ca1c4fe6)
 
 ### 🛒 Cart & Checkout
 <img src="![photo_2024-06-02_14-35-38](https://github.com/user-attachments/assets/bd70d503-c33d-4941-9855-a1af0847b075)" width="200"/> <img src="![photo_10_2024-07-26_10-22-06](https://github.com/user-attachments/assets/6fa072a1-e29d-4a19-9301-d5abdd19ea3d)" width="200"/>
