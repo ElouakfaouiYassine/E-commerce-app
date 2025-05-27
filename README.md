@@ -1,4 +1,4 @@
-![photo_2024-06-02_14-39-28](https://github.com/user-attachments/assets/35828671-dc47-447f-aaf0-144d8b1482ab)# 🛒 E-commerce App
+# 🛒 E-commerce App
 
 A full-stack e-commerce mobile app built using **Kotlin** (Android), **PHP** (backend), with hybrid database support using **SQLite** (local) and **MongoDB** (remote). The app offers complete user experience including authentication, product browsing, cart, admin management, and dark mode.
 
