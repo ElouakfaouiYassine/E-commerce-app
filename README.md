@@ -5,6 +5,8 @@ A full-stack e-commerce mobile app built using **Kotlin** (Android), **PHP** (ba
 ---
 
 ## 📱 App Screenshots
+![Application sTORE](https://github.com/user-attachments/assets/a38c6fa8-11f4-451d-bbd1-30d92337a052)
+
 
 ### 🔐 Authentication
 ![photo_1_2025-03-26_23-52-47](https://github.com/user-attachments/assets/58e1dee5-836b-4c87-8460-0149361483fb)
